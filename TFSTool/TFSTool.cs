@@ -2,6 +2,7 @@
 using Microsoft.Office.Interop.Outlook;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using TFSUtils;
@@ -10,9 +11,8 @@ namespace TFSTool
 {
     public partial class TFSTool : BaseForm
     {
-        string query = "SELECT [System.Id],[System.WorkItemType],[System.Title],[System.AssignedTo],[System.State],[System.Tags], [System.IterationPath] FROM WorkItems WHERE [System.TeamProject] = 'VKC2' AND[System.Id] > 23186";
-        string _URL = "http://ogmcshyaptf01.logon.ds.ge.com:8080/tfs/defaultcollection";
-        private string currentSprintNumber = "84";
+        string query = "SELECT * FROM WorkItems WHERE [System.TeamProject] = 'VKC2' AND[System.Id] > 23186";
+        string _URL = "http://ogmcshyaptf01.logon.ds.ge.com:8080/tfs/DefaultCollection";
 
         public TFSTool()
         {
@@ -30,11 +30,20 @@ namespace TFSTool
         private void InitUI()
         {
             SetUICredentials();
+
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+                dateTimePicker.Value = DateTime.Now.AddDays(-3);
+            else
+                dateTimePicker.Value = DateTime.Now.AddDays(-1);
+
+            txtSprintNum.Text = "84";
+            richTextBox1.Visible = false;
         }
 
 
         private void InitMethod()
         {
+            bool toEdit = true;
             this.ConfigToolStripMenuItem.Click += delegate (object sender, EventArgs e)
             {
                 if (this.SetCredentials())
@@ -43,6 +52,20 @@ namespace TFSTool
                 }
             };
             this.loadToolStripMenuItem.Click += delegate { this.SetUICredentials(); };
+            this.editEmailToolStripMenuItem.Click += delegate {
+                richTextBox1.Visible = !richTextBox1.Visible;
+                tableLayoutPanel1.Visible = !tableLayoutPanel1.Visible;
+                if (toEdit)
+                {
+                    richTextBox1.Text = webBrowserShow.DocumentText.ToStringEx();
+                    toEdit = false;
+                }
+                else
+                {
+                    webBrowserShow.DocumentText = richTextBox1.Text.ToStringEx();
+                    toEdit = true;
+                }
+            };
             this.tipsToolStripMenuItem.Click += delegate (object sender, EventArgs e)
             {
                 MessageBox.Show(this, "This is Help...", "Tips", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -164,7 +187,7 @@ namespace TFSTool
                     if (vKWorkItems == null || vKWorkItems.Count <= 0)
                         return;
 
-                    SetEmailContent(vKWorkItems);
+                    HandleWorkItems(vKWorkItems);
                 }
                 finally
                 {
@@ -179,7 +202,6 @@ namespace TFSTool
             string pass = Utils.GetConfig("password");
             if (username.IsNullOrEmpty() || pass.IsNullOrEmpty())
             {
-                MessageBox.Show(this, "Please input credential.", "Credential", MessageBoxButtons.OK);
                 return false;
             }
             string tfsQuery = Utils.GetConfig("tfsquery", string.Empty, false);
@@ -194,17 +216,78 @@ namespace TFSTool
             return true;
         }
 
-        private void SetEmailContent(List<VKWorkItem> vKWorkItems)
+        private void HandleWorkItems(List<VKWorkItem> vKWorkItems)
         {
             List<VKWorkItem> vKWorkItemsRtn = new List<VKWorkItem>();
+            DateTime dateTime = dateTimePicker.Value;
+            string sprintNum = txtSprintNum.Text.ToStringEx();
+
             for (int i = 0; i < vKWorkItems.Count; i++)
             {
-                if (vKWorkItems[i].IterationPath.Contains(currentSprintNumber))
+                if (vKWorkItems[i].IterationPath.Contains(sprintNum))
                     vKWorkItemsRtn.Add(vKWorkItems[i]);
             }
 
+            //save to local result folder
+            vKWorkItemsRtn = GetSpecficDateWorkItems(vKWorkItemsRtn, dateTime);
             vKWorkItemsRtn.SaveWorkItemList();
 
+            //set email content
+            vKWorkItemsRtn = GetSpecficDateWorkItems(vKWorkItemsRtn, dateTime,true);
+            string strEmailContent = SetEmailContent(vKWorkItemsRtn, sprintNum);
+            if (!strEmailContent.IsNullOrEmpty())
+                webBrowserShow.DocumentText = strEmailContent.ToStringEx();
         }
+
+        private string SetEmailContent(List<VKWorkItem> vKWorkItemsRtn, string sprintNum)
+        {
+            StringBuilder body = new StringBuilder();
+             
+            body.Append(string.Format("<p class='MsoNormal'>Hi All,<o:p></o:p></p>" +
+                "<p class=MsoNormal><b><span style='background:yellow;mso-highlight:yellow'>Sprint {0}</span></b></p>" +
+                "<p class=MsoNormal>VKC2 released @ ~{1} with script run. &nbsp; &nbsp;<o:p></o:p></p>" +
+                "<ul style='margin-top:0in' type=disc><li class=MsoNormal style='mso-list:l0 level1 lfo3'>vkc2.3.3-20180829.sql<o:p></o:p></li></ul>" +
+                "<p class=MsoNormal>Following PBI are finished.<o:p></o:p></p>", sprintNum, DateTime.Now.ToString("HH:mm MMMM dd")));
+            body.Append("<table class='MsoNormalTable' width=1393 border = 1 cellspacing=0 cellpadding=0>");
+            body.Append("<tr style='height:17.15pt'>");
+            body.Append(string.Format("<td width=125 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
+            body.Append(string.Format("<td width=194 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
+            body.Append(string.Format("<td width=671 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
+
+            foreach (VKWorkItem wi in vKWorkItemsRtn) {
+                body.Append("<tr style='height:17.15pt'>");
+                body.Append(string.Format("<td width=125 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.WorkItemType.Replace("Product Backlog Item", "PBI")));
+                body.Append(string.Format("<td width=194 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ID));
+                body.Append(string.Format("<td width=671 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Title)); 
+                body.Append("</tr>");
+            }
+            body.Append("</table>");
+            body.Append("<p class='MsoNormal'>&nbsp;<o:p></o:p></p>" +
+                "<p class=MsoNormal>Thanks.<o:p></o:p></p><p class=MsoNormal><br>Regards,<o:p></o:p></p>" +
+                "<p class=MsoNormal>Ben<o:p></o:p></p>");
+
+            return body.ToStringEx();
+
+        }
+
+        private List<VKWorkItem> GetSpecficDateWorkItems(List<VKWorkItem> vKWorkItems, DateTime dateTime, bool isFileterStatus = false)
+        {
+            List<VKWorkItem> vKWorkItemsRtn = new List<VKWorkItem>();
+            if (vKWorkItems == null || dateTime == null)
+                return vKWorkItems;
+
+            foreach (VKWorkItem wi in vKWorkItems)
+            {
+                if (!wi.ChangedDate.ToShortDateString().Equals(dateTime.ToShortDateString()))
+                    continue;
+                if (isFileterStatus && !(wi.State.Equals("Done") || wi.State.Equals("Resolved")))
+                    continue;
+
+                vKWorkItemsRtn.Add(wi);
+            }
+
+            return vKWorkItemsRtn;
+        }
+
     }
 }

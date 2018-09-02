@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using TFSUtils;
 
 namespace Helper
 {
@@ -33,17 +34,15 @@ namespace Helper
                     StringBuilder sb = new StringBuilder();
                     sb.Append("\"" + epic.ID + "\"");
                     sb.Append(",");
-                    sb.Append("\"" + epic.Title + "\"");
+                    sb.Append("\"" + epic.Title.ToStringEx().Replace(@"\",@"\\") + "\"");
+                    sb.Append(",");
+                    sb.Append("\"" + epic.WorkItemType + "\"");
                     sb.Append(",");
                     sb.Append("\"" + epic.IterationPath + "\"");
                     sb.Append(",");
                     sb.Append("\"" + epic.State + "\"");
                     sb.Append(",");
-                    sb.Append("\"" + epic.ChangedDate.ToLongDateString() + "\"");
-                    sb.Append(",");
-                    sb.Append("\"" + epic.ChangedDate + "\"");
-                    sb.Append(",");
-                    sb.Append("\"" + epic.IsOpen + "\"");
+                    sb.Append("\"" + epic.ChangedDate.ToStringEx() + "\""); 
                     sb.Append(",");
                     sb.Append("\"" + epic.AssignedTo + "\"");
                     sb.Append(",");

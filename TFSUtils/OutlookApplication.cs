@@ -34,6 +34,9 @@ namespace TFSUtils
 
         public bool SendEmail(OlItemType olMailItem, string to, string cc, string sub, string documentText, OlImportance olImportanceNormal)
         {
+            if (_application == null)
+                GetApplicationObject();
+
             try
             {
                 MailItem mailItem = _application.CreateItem(olMailItem);
@@ -46,7 +49,6 @@ namespace TFSUtils
             }
             catch (System.Exception e)
             {
-                return false;
                 throw e;
             }
 

@@ -69,10 +69,10 @@ namespace Helper
                         IterationPath = wi.IterationPath,
                         Title = wi.Title,
                         State = wi.State,
-                        WorkItemType = wi.Type.ToStringEx(),
+                        WorkItemType = wi.Type.Name.ToStringEx(),
                         StartDate = wi.CreatedDate,
                         ChangedDate = wi.ChangedDate,
-                        IsOpen = wi.IsOpen
+                        Description = wi.Description
                     };
 
                     vkWorkItems.Add(vkWorkItem);

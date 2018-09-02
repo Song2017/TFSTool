@@ -37,22 +37,28 @@
             this.labelSubject = new System.Windows.Forms.Label();
             this.textSubject = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.webBrowserShow = new System.Windows.Forms.WebBrowser();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.txtSprintNum = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.webBrowserShow = new System.Windows.Forms.WebBrowser();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonReceive
             // 
-            this.buttonReceive.Location = new System.Drawing.Point(685, 61);
+            this.buttonReceive.Location = new System.Drawing.Point(685, 65);
             this.buttonReceive.Name = "buttonReceive";
             this.buttonReceive.Size = new System.Drawing.Size(75, 23);
             this.buttonReceive.TabIndex = 38;
@@ -61,7 +67,7 @@
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(685, 90);
+            this.buttonSend.Location = new System.Drawing.Point(685, 91);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 23);
             this.buttonSend.TabIndex = 39;
@@ -87,7 +93,7 @@
             // labelCC
             // 
             this.labelCC.AutoSize = true;
-            this.labelCC.Location = new System.Drawing.Point(37, 69);
+            this.labelCC.Location = new System.Drawing.Point(37, 70);
             this.labelCC.Name = "labelCC";
             this.labelCC.Size = new System.Drawing.Size(24, 13);
             this.labelCC.TabIndex = 42;
@@ -97,13 +103,13 @@
             // 
             this.textCC.Location = new System.Drawing.Point(70, 66);
             this.textCC.Name = "textCC";
-            this.textCC.Size = new System.Drawing.Size(583, 20);
+            this.textCC.Size = new System.Drawing.Size(300, 20);
             this.textCC.TabIndex = 43;
             // 
             // labelSubject
             // 
             this.labelSubject.AutoSize = true;
-            this.labelSubject.Location = new System.Drawing.Point(15, 95);
+            this.labelSubject.Location = new System.Drawing.Point(15, 96);
             this.labelSubject.Name = "labelSubject";
             this.labelSubject.Size = new System.Drawing.Size(46, 13);
             this.labelSubject.TabIndex = 44;
@@ -113,7 +119,7 @@
             // 
             this.textSubject.Location = new System.Drawing.Point(70, 92);
             this.textSubject.Name = "textSubject";
-            this.textSubject.Size = new System.Drawing.Size(583, 20);
+            this.textSubject.Size = new System.Drawing.Size(300, 20);
             this.textSubject.TabIndex = 45;
             // 
             // label5
@@ -124,16 +130,6 @@
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 46;
             this.label5.Text = "Message:";
-            // 
-            // webBrowserShow
-            // 
-            this.webBrowserShow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserShow.Location = new System.Drawing.Point(3, 3);
-            this.webBrowserShow.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowserShow.Name = "webBrowserShow";
-            this.webBrowserShow.Size = new System.Drawing.Size(734, 310);
-            this.webBrowserShow.TabIndex = 29;
-            this.webBrowserShow.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // tableLayoutPanel1
             // 
@@ -152,14 +148,15 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(740, 316);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(740, 314);
             this.tableLayoutPanel1.TabIndex = 47;
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ConfigToolStripMenuItem,
-            this.loadToolStripMenuItem});
+            this.loadToolStripMenuItem,
+            this.editEmailToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -175,6 +172,12 @@
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.loadToolStripMenuItem.Text = "Load Credentials";
+            // 
+            // editEmailToolStripMenuItem
+            // 
+            this.editEmailToolStripMenuItem.Name = "editEmailToolStripMenuItem";
+            this.editEmailToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.editEmailToolStripMenuItem.Text = "Edit Email";
             // 
             // helpToolStripMenuItem
             // 
@@ -209,11 +212,67 @@
             this.menuStrip1.TabIndex = 48;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(381, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "Select Date:";
+            // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Location = new System.Drawing.Point(453, 92);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker.TabIndex = 50;
+            this.dateTimePicker.Value = new System.DateTime(2018, 9, 2, 15, 45, 43, 0);
+            // 
+            // txtSprintNum
+            // 
+            this.txtSprintNum.Location = new System.Drawing.Point(453, 66);
+            this.txtSprintNum.Name = "txtSprintNum";
+            this.txtSprintNum.Size = new System.Drawing.Size(200, 20);
+            this.txtSprintNum.TabIndex = 52;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(370, 70);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 13);
+            this.label2.TabIndex = 51;
+            this.label2.Text = "Sprint Number:";
+            // 
+            // webBrowserShow
+            // 
+            this.webBrowserShow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowserShow.Location = new System.Drawing.Point(3, 3);
+            this.webBrowserShow.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserShow.Name = "webBrowserShow";
+            this.webBrowserShow.Size = new System.Drawing.Size(734, 308);
+            this.webBrowserShow.TabIndex = 2;
+            this.webBrowserShow.Url = new System.Uri("", System.UriKind.Relative);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(18, 135);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(789, 307);
+            this.richTextBox1.TabIndex = 53;
+            this.richTextBox1.Text = "";
+            // 
             // TFSTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 447);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.txtSprintNum);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dateTimePicker);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label5);
@@ -246,7 +305,6 @@
         private System.Windows.Forms.Label labelSubject;
         private System.Windows.Forms.TextBox textSubject;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.WebBrowser webBrowserShow;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConfigToolStripMenuItem;
@@ -255,5 +313,12 @@
         private System.Windows.Forms.ToolStripMenuItem tipsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.TextBox txtSprintNum;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem editEmailToolStripMenuItem;
+        private System.Windows.Forms.WebBrowser webBrowserShow;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

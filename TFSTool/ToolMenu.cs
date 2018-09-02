@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Windows.Forms;
 using TFSUtils;
 
@@ -33,6 +34,13 @@ namespace TFSTool
             this.textTo.Text = Utils.GetConfig("to", "");
             this.textCC.Text = Utils.GetConfig("cc", "");
             this.textSubject.Text = Utils.GetConfig("subject", "");
+
+            if (textTo.Text.ToStringEx().IsNullOrEmpty())
+                textTo.Text = "Guangshun.Song@bhge.com; Bensong2017@hotmail.com";
+            if (textCC.Text.ToStringEx().IsNullOrEmpty())
+                textCC.Text = "Bensong2017@hotmail.com";
+            if (textSubject.Text.ToStringEx().IsNullOrEmpty())
+                textSubject.Text = string.Format("VKC2 Released @{0}",DateTime.Now.ToString("yyyy/MM/dd"));
         }
 
         private void InitMethod()

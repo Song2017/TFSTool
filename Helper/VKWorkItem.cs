@@ -41,5 +41,7 @@ namespace Helper
 
         [DataMember]
         public DateTime ChangedDate { get; internal set; }
+        [DataMember]
+        public string Description { get; internal set; }
     }
 }
