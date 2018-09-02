@@ -1,4 +1,0 @@
-"33544","Dev (PBI 33543 VKC: fields are missed in column setup dialog)","Task","VKC2\Sprint 84","In Progress","8/31/2018 2:06:28 PM","","Wednesday, July 04, 2018"
-"34112","Code Review  (BUG 33934 VKC: Internal Traveler is missed in JA tenant)","Task","VKC2\Sprint 84","Done","8/31/2018 3:49:28 PM","","Monday, August 20, 2018"
-"34193","Permitted Leak will not clean while Valve Cv is cleaned","Bug","VKC2\Sprint 84","Resolved","8/31/2018 10:30:19 AM","","Thursday, August 30, 2018"
-"34194","Enter more than 22 characters in "Valve Cv", permitted leak will be incorrect","Bug","VKC2\Sprint 84","Resolved","8/31/2018 2:20:19 PM","","Thursday, August 30, 2018"

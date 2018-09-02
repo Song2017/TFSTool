@@ -11,8 +11,8 @@ namespace TFSTool
 {
     public partial class TFSTool : BaseForm
     {
-        string query = "SELECT * FROM WorkItems WHERE [System.TeamProject] = 'VKC2' AND[System.Id] > 23186";
-        string _URL = "http://ogmcshyaptf01.logon.ds.ge.com:8080/tfs/DefaultCollection";
+        string query = "SELECT * FROM WorkItems WHERE [System.TeamProject] = 'test' AND[System.Id] > 23186";
+        string _URL = "http://test/tfs/DefaultCollection";
 
         public TFSTool()
         {
