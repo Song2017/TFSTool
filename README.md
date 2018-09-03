@@ -6,4 +6,5 @@ Use Steps:
 4. Edit Email content in Menu
 5. Send Email via button
 
-Note: move dll in folder Application to output dir: bin/Debug or bin/Release
+### Note 
+1. move dlls in folder Application to output dir: bin/Debug or bin/Release
