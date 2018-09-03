@@ -1,6 +1,6 @@
 # TFSTool
 ### Purpose
-Bridge TFS and Email with custom operation
+Bridge TFS and Email with custom operation    
 枚举TFS中段时间内更新的元素，按表格型式拼接到邮件中，调用本地Outlook程序发送邮件。
 
 ### Use Steps:
