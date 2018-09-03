@@ -38,6 +38,7 @@
             this.textSubject = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.webBrowserShow = new System.Windows.Forms.WebBrowser();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,19 +47,20 @@
             this.tipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.txtSprintNum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.webBrowserShow = new System.Windows.Forms.WebBrowser();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonReceive
             // 
-            this.buttonReceive.Location = new System.Drawing.Point(685, 65);
+            this.buttonReceive.Location = new System.Drawing.Point(663, 115);
             this.buttonReceive.Name = "buttonReceive";
             this.buttonReceive.Size = new System.Drawing.Size(75, 23);
             this.buttonReceive.TabIndex = 38;
@@ -67,7 +69,7 @@
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(685, 91);
+            this.buttonSend.Location = new System.Drawing.Point(744, 115);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 23);
             this.buttonSend.TabIndex = 39;
@@ -125,7 +127,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 119);
+            this.label5.Location = new System.Drawing.Point(8, 137);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 46;
@@ -143,13 +145,23 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.webBrowserShow, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(70, 128);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(70, 146);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(740, 314);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(758, 339);
             this.tableLayoutPanel1.TabIndex = 47;
+            // 
+            // webBrowserShow
+            // 
+            this.webBrowserShow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowserShow.Location = new System.Drawing.Point(3, 3);
+            this.webBrowserShow.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserShow.Name = "webBrowserShow";
+            this.webBrowserShow.Size = new System.Drawing.Size(752, 333);
+            this.webBrowserShow.TabIndex = 2;
+            this.webBrowserShow.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // toolsToolStripMenuItem
             // 
@@ -208,30 +220,13 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(813, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(831, 24);
             this.menuStrip1.TabIndex = 48;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(381, 96);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 49;
-            this.label1.Text = "Select Date:";
-            // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.Location = new System.Drawing.Point(453, 92);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker.TabIndex = 50;
-            this.dateTimePicker.Value = new System.DateTime(2018, 9, 2, 15, 45, 43, 0);
-            // 
             // txtSprintNum
             // 
-            this.txtSprintNum.Location = new System.Drawing.Point(453, 66);
+            this.txtSprintNum.Location = new System.Drawing.Point(453, 92);
             this.txtSprintNum.Name = "txtSprintNum";
             this.txtSprintNum.Size = new System.Drawing.Size(200, 20);
             this.txtSprintNum.TabIndex = 52;
@@ -239,40 +234,70 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(370, 70);
+            this.label2.Location = new System.Drawing.Point(370, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 51;
             this.label2.Text = "Sprint Number:";
             // 
-            // webBrowserShow
-            // 
-            this.webBrowserShow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserShow.Location = new System.Drawing.Point(3, 3);
-            this.webBrowserShow.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowserShow.Name = "webBrowserShow";
-            this.webBrowserShow.Size = new System.Drawing.Size(734, 308);
-            this.webBrowserShow.TabIndex = 2;
-            this.webBrowserShow.Url = new System.Uri("", System.UriKind.Relative);
-            // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(18, 135);
+            this.richTextBox1.Location = new System.Drawing.Point(18, 153);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(789, 307);
             this.richTextBox1.TabIndex = 53;
             this.richTextBox1.Text = "";
             // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.CustomFormat = "yyyy-MM-dd 00:00:00";
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker.Location = new System.Drawing.Point(73, 118);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker.TabIndex = 55;
+            this.dateTimePicker.Value = new System.DateTime(2018, 9, 2, 15, 45, 43, 0);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1, 122);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "BeginDate:";
+            // 
+            // dateTimePickerEnd
+            // 
+            this.dateTimePickerEnd.CustomFormat = "yyyy-MM-dd 00:00:00";
+            this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(373, 118);
+            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerEnd.TabIndex = 57;
+            this.dateTimePickerEnd.Value = new System.DateTime(2018, 9, 2, 15, 45, 43, 0);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(315, 122);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 56;
+            this.label3.Text = "EndDate:";
+            // 
             // TFSTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 447);
+            this.ClientSize = new System.Drawing.Size(831, 472);
+            this.Controls.Add(this.dateTimePickerEnd);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dateTimePicker);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.txtSprintNum);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dateTimePicker);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label5);
@@ -313,12 +338,14 @@
         private System.Windows.Forms.ToolStripMenuItem tipsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.TextBox txtSprintNum;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem editEmailToolStripMenuItem;
         private System.Windows.Forms.WebBrowser webBrowserShow;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
+        private System.Windows.Forms.Label label3;
     }
 }

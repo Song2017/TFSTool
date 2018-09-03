@@ -43,13 +43,17 @@
             this.labelCC = new System.Windows.Forms.Label();
             this.textTo = new System.Windows.Forms.TextBox();
             this.labelTo = new System.Windows.Forms.Label();
+            this.txtQuery = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtUrl = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(224, 250);
+            this.buttonCancel.Location = new System.Drawing.Point(236, 315);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(71, 22);
             this.buttonCancel.TabIndex = 24;
@@ -58,7 +62,7 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(103, 250);
+            this.buttonOK.Location = new System.Drawing.Point(115, 315);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(71, 22);
             this.buttonOK.TabIndex = 23;
@@ -67,6 +71,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtQuery);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.txtUrl);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.linkLabelCredentials);
             this.groupBox2.Controls.Add(this.textPassWord);
             this.groupBox2.Controls.Add(this.label2);
@@ -74,7 +82,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(283, 103);
+            this.groupBox2.Size = new System.Drawing.Size(419, 161);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "TFS Authentication Credentials";
@@ -93,7 +101,7 @@
             // 
             this.textPassWord.Location = new System.Drawing.Point(59, 69);
             this.textPassWord.Name = "textPassWord";
-            this.textPassWord.Size = new System.Drawing.Size(166, 20);
+            this.textPassWord.Size = new System.Drawing.Size(350, 20);
             this.textPassWord.TabIndex = 20;
             // 
             // label2
@@ -109,7 +117,7 @@
             // 
             this.textUserName.Location = new System.Drawing.Point(59, 43);
             this.textUserName.Name = "textUserName";
-            this.textUserName.Size = new System.Drawing.Size(166, 20);
+            this.textUserName.Size = new System.Drawing.Size(350, 20);
             this.textUserName.TabIndex = 18;
             // 
             // label3
@@ -129,9 +137,9 @@
             this.groupBox1.Controls.Add(this.labelCC);
             this.groupBox1.Controls.Add(this.textTo);
             this.groupBox1.Controls.Add(this.labelTo);
-            this.groupBox1.Location = new System.Drawing.Point(12, 121);
+            this.groupBox1.Location = new System.Drawing.Point(12, 179);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(283, 103);
+            this.groupBox1.Size = new System.Drawing.Size(419, 103);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Email";
@@ -140,7 +148,7 @@
             // 
             this.textSubject.Location = new System.Drawing.Point(59, 71);
             this.textSubject.Name = "textSubject";
-            this.textSubject.Size = new System.Drawing.Size(166, 20);
+            this.textSubject.Size = new System.Drawing.Size(350, 20);
             this.textSubject.TabIndex = 22;
             // 
             // labelSubject
@@ -156,7 +164,7 @@
             // 
             this.textCC.Location = new System.Drawing.Point(59, 45);
             this.textCC.Name = "textCC";
-            this.textCC.Size = new System.Drawing.Size(166, 20);
+            this.textCC.Size = new System.Drawing.Size(350, 20);
             this.textCC.TabIndex = 20;
             // 
             // labelCC
@@ -172,7 +180,7 @@
             // 
             this.textTo.Location = new System.Drawing.Point(59, 19);
             this.textTo.Name = "textTo";
-            this.textTo.Size = new System.Drawing.Size(166, 20);
+            this.textTo.Size = new System.Drawing.Size(350, 20);
             this.textTo.TabIndex = 18;
             // 
             // labelTo
@@ -184,11 +192,43 @@
             this.labelTo.TabIndex = 17;
             this.labelTo.Text = "To:";
             // 
+            // txtQuery
+            // 
+            this.txtQuery.Location = new System.Drawing.Point(59, 121);
+            this.txtQuery.Name = "txtQuery";
+            this.txtQuery.Size = new System.Drawing.Size(350, 20);
+            this.txtQuery.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(-2, 124);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "TFSQuery:";
+            // 
+            // txtUrl
+            // 
+            this.txtUrl.Location = new System.Drawing.Point(59, 95);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(350, 20);
+            this.txtUrl.TabIndex = 23;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(-3, 98);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "TFSURL:";
+            // 
             // ToolMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 289);
+            this.ClientSize = new System.Drawing.Size(492, 360);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.groupBox2);
@@ -220,5 +260,9 @@
         private System.Windows.Forms.Label labelCC;
         private System.Windows.Forms.TextBox textTo;
         private System.Windows.Forms.Label labelTo;
+        private System.Windows.Forms.TextBox txtQuery;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtUrl;
+        private System.Windows.Forms.Label label4;
     }
 }

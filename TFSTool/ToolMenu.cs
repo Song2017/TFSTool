@@ -36,11 +36,14 @@ namespace TFSTool
             this.textSubject.Text = Utils.GetConfig("subject", "");
 
             if (textTo.Text.ToStringEx().IsNullOrEmpty())
-                textTo.Text = "Guangshun.Song@bhge.com; Bensong2017@hotmail.com";
+                textTo.Text = "Bensong2017@hotmail.com";
             if (textCC.Text.ToStringEx().IsNullOrEmpty())
                 textCC.Text = "Bensong2017@hotmail.com";
-            if (textSubject.Text.ToStringEx().IsNullOrEmpty())
-                textSubject.Text = string.Format("VKC2 Released @{0}",DateTime.Now.ToString("yyyy/MM/dd"));
+            if (txtUrl.Text.ToStringEx().IsNullOrEmpty())
+                txtUrl.Text = "http://test.com:8080/tfs/DefaultCollection";
+            if (txtQuery.Text.ToStringEx().IsNullOrEmpty())
+                txtQuery.Text = string.Format("SELECT * FROM WorkItems WHERE {0}", "[System.TeamProject] = 'VKC2' AND[System.Id] > 23186");
+            textSubject.Text = string.Format("VKC2 Released @{0}",DateTime.Now.ToString("yyyy/MM/dd"));
         }
 
         private void InitMethod()
@@ -50,7 +53,9 @@ namespace TFSTool
                 this.TFSCredentials = new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>("username", this.textUserName.Text.ToStringEx()),
-                    new KeyValuePair<string, string>("password", this.textPassWord.Text.ToStringEx())
+                    new KeyValuePair<string, string>("password", this.textPassWord.Text.ToStringEx()),
+                    new KeyValuePair<string, string>("tfsurl", this.txtUrl.Text.ToStringEx()),
+                    new KeyValuePair<string, string>("tfsquery", this.txtQuery.Text.ToStringEx())
                 };
                 this.EmailParameters = new List<KeyValuePair<string, string>>
                 {
