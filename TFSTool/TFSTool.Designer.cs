@@ -54,13 +54,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnSaveLocal = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonReceive
             // 
-            this.buttonReceive.Location = new System.Drawing.Point(663, 115);
+            this.buttonReceive.Location = new System.Drawing.Point(744, 64);
             this.buttonReceive.Name = "buttonReceive";
             this.buttonReceive.Size = new System.Drawing.Size(75, 23);
             this.buttonReceive.TabIndex = 38;
@@ -69,17 +70,17 @@
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(744, 115);
+            this.buttonSend.Location = new System.Drawing.Point(744, 117);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 23);
             this.buttonSend.TabIndex = 39;
-            this.buttonSend.Text = "Send";
+            this.buttonSend.Text = "Email";
             this.buttonSend.UseVisualStyleBackColor = true;
             // 
             // labelTo
             // 
             this.labelTo.AutoSize = true;
-            this.labelTo.Location = new System.Drawing.Point(38, 43);
+            this.labelTo.Location = new System.Drawing.Point(41, 42);
             this.labelTo.Name = "labelTo";
             this.labelTo.Size = new System.Drawing.Size(23, 13);
             this.labelTo.TabIndex = 40;
@@ -95,7 +96,7 @@
             // labelCC
             // 
             this.labelCC.AutoSize = true;
-            this.labelCC.Location = new System.Drawing.Point(37, 70);
+            this.labelCC.Location = new System.Drawing.Point(40, 69);
             this.labelCC.Name = "labelCC";
             this.labelCC.Size = new System.Drawing.Size(24, 13);
             this.labelCC.TabIndex = 42;
@@ -111,7 +112,7 @@
             // labelSubject
             // 
             this.labelSubject.AutoSize = true;
-            this.labelSubject.Location = new System.Drawing.Point(15, 96);
+            this.labelSubject.Location = new System.Drawing.Point(18, 95);
             this.labelSubject.Name = "labelSubject";
             this.labelSubject.Size = new System.Drawing.Size(46, 13);
             this.labelSubject.TabIndex = 44;
@@ -127,7 +128,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 137);
+            this.label5.Location = new System.Drawing.Point(11, 149);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 46;
@@ -228,7 +229,7 @@
             // 
             this.txtSprintNum.Location = new System.Drawing.Point(453, 92);
             this.txtSprintNum.Name = "txtSprintNum";
-            this.txtSprintNum.Size = new System.Drawing.Size(200, 20);
+            this.txtSprintNum.Size = new System.Drawing.Size(120, 20);
             this.txtSprintNum.TabIndex = 52;
             // 
             // label2
@@ -242,7 +243,8 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(18, 153);
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.richTextBox1.Location = new System.Drawing.Point(41, 165);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(789, 307);
             this.richTextBox1.TabIndex = 53;
@@ -261,7 +263,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 122);
+            this.label1.Location = new System.Drawing.Point(4, 121);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 54;
@@ -286,11 +288,21 @@
             this.label3.TabIndex = 56;
             this.label3.Text = "EndDate:";
             // 
+            // btnSaveLocal
+            // 
+            this.btnSaveLocal.Location = new System.Drawing.Point(744, 90);
+            this.btnSaveLocal.Name = "btnSaveLocal";
+            this.btnSaveLocal.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveLocal.TabIndex = 58;
+            this.btnSaveLocal.Text = "Localize";
+            this.btnSaveLocal.UseVisualStyleBackColor = true;
+            // 
             // TFSTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 472);
+            this.Controls.Add(this.btnSaveLocal);
             this.Controls.Add(this.dateTimePickerEnd);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePicker);
@@ -347,5 +359,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnSaveLocal;
     }
 }

@@ -1,6 +1,0 @@
-C:\Users\503027010\Desktop\Beta2\TFSTool\TFSUtils\bin\Release\TFSUtils.dll
-C:\Users\503027010\Desktop\Beta2\TFSTool\TFSUtils\bin\Release\TFSUtils.pdb
-C:\Users\503027010\Desktop\Beta2\TFSTool\TFSUtils\obj\Release\TFSUtils.csprojAssemblyReference.cache
-C:\Users\503027010\Desktop\Beta2\TFSTool\TFSUtils\obj\Release\TFSUtils.csproj.CoreCompileInputs.cache
-C:\Users\503027010\Desktop\Beta2\TFSTool\TFSUtils\obj\Release\TFSUtils.dll
-C:\Users\503027010\Desktop\Beta2\TFSTool\TFSUtils\obj\Release\TFSUtils.pdb

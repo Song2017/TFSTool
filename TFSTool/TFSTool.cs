@@ -11,6 +11,8 @@ namespace TFSTool
 {
     public partial class TFSTool : BaseForm
     {
+        private List<VKWorkItem> _vKWorkItemsCache = new List<VKWorkItem>();
+
         public TFSTool()
         {
             InitializeComponent();
@@ -68,7 +70,19 @@ namespace TFSTool
             };
             this.tipsToolStripMenuItem.Click += delegate (object sender, EventArgs e)
             {
-                MessageBox.Show(this, "This is Help...", "Tips", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("1. Install Outlook to local machine: avoid local email server prohibit ");
+                sb.AppendLine("2. Set Credentials in Menu ");
+                sb.AppendLine("3. Select Date ");
+                sb.AppendLine("4. Retrive tfs data via button ");
+                sb.AppendLine("5. Edit Email content in Menu ");
+                sb.AppendLine("6. Send Email via button");
+
+                MessageBox.Show(this, sb.ToStringEx(), "Tips", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            };
+            this.aboutToolStripMenuItem.Click += delegate
+            {
+                MessageBox.Show(this, "this is about...", "About", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             };
 
             buttonSend.Click += delegate (object sender, EventArgs e)
@@ -92,18 +106,31 @@ namespace TFSTool
             buttonReceive.Click += delegate
             {
                 SetUICredentials();
-                PrepareVKWorkItems(null, null);
+                PrepareVKWorkItems();
             };
 
-            txtSprintNum.KeyPress += TxtSprintNum_KeyPress;
-        }
+            btnSaveLocal.Click += delegate
+            {
+                if (_vKWorkItemsCache == null || _vKWorkItemsCache.Count <= 0)
+                {
+                    MessageBox.Show(this, "Please get TFS data.", "TFS Data", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-        private void TxtSprintNum_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != (char)Keys.Return )
-                return;
+                if (_vKWorkItemsCache.SaveWorkItemList())
+                {
+                    MessageBox.Show(this, "Success: Please find data in folder result.", "TFS Data", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                };
 
-            Utils.SaveConfig("sprintnum", txtSprintNum.Text);
+            };
+
+            txtSprintNum.KeyPress += delegate (object sender, KeyPressEventArgs e)
+            {
+                if (e.KeyChar != (char)Keys.Return)
+                    return;
+
+                Utils.SaveConfig("sprintnum", txtSprintNum.Text);
+            };
         }
 
         private bool SendEmail()
@@ -131,18 +158,9 @@ namespace TFSTool
 
         private void SetUICredentials()
         {
-            if (textTo.Text.IsNullOrEmpty())
-            {
-                textTo.Text = Utils.GetConfig("to", "");
-            }
-            if (textCC.Text.IsNullOrEmpty())
-            {
-                textCC.Text = Utils.GetConfig("cc", "");
-            }
-            if (textSubject.Text.IsNullOrEmpty())
-            {
-                textSubject.Text = Utils.GetConfig("subject", "");
-            }
+            textTo.Text = Utils.GetConfig("to", "");
+            textCC.Text = Utils.GetConfig("cc", "");
+            textSubject.Text = Utils.GetConfig("subject", "");
         }
 
         private bool SetCredentials()
@@ -178,7 +196,7 @@ namespace TFSTool
             return true;
         }
 
-        private void PrepareVKWorkItems(object sender, EventArgs e)
+        private void PrepareVKWorkItems()
         {
 
             this.BeginWait();
@@ -235,16 +253,15 @@ namespace TFSTool
 
             for (int i = 0; i < vKWorkItems.Count; i++)
             {
-                if (vKWorkItems[i].IterationPath.Contains(sprintNum))
+                if (sprintNum.IsNullOrEmpty() || vKWorkItems[i].IterationPath.Contains(sprintNum))
                     vKWorkItemsRtn.Add(vKWorkItems[i]);
             }
 
-            //save to local result folder
-            vKWorkItemsRtn = GetSpecficDateWorkItems(vKWorkItemsRtn, dateTime, dateTimeEnd);
-            vKWorkItemsRtn.SaveWorkItemList();
+            //get vk items by UI 
+            _vKWorkItemsCache = GetSpecficDateWorkItems(vKWorkItemsRtn, dateTime, dateTimeEnd);
 
             //set email content
-            vKWorkItemsRtn = GetSpecficDateWorkItems(vKWorkItemsRtn, dateTime, dateTimeEnd, true);
+            vKWorkItemsRtn = GetSpecficDateWorkItems(_vKWorkItemsCache, dateTime, dateTimeEnd, true);
             string strEmailContent = SetEmailContent(vKWorkItemsRtn, sprintNum);
             if (!strEmailContent.IsNullOrEmpty())
                 webBrowserShow.DocumentText = strEmailContent.ToStringEx();
@@ -254,7 +271,7 @@ namespace TFSTool
         {
             StringBuilder body = new StringBuilder();
 
-            body.Append(string.Format("<p style='margin: 0 0;color:#2F5597;'>Hi All,<o:p></o:p></p><br>" +
+            body.Append(string.Format("<HTML><BODY contentEditable='true'><p style='margin: 0 0;color:#2F5597;'>Hi All,<o:p></o:p></p><br>" +
                 "<p style='margin: 0 0;color:#2F5597;'><b><span style='background:yellow;mso-highlight:yellow'>Sprint {0}</span></b></p><br>" +
                 "<p style='margin: 0 0;color:#2F5597;'>VKC2 released @ ~{1} with script run. &nbsp; &nbsp;<o:p></o:p></p>" +
                 "<ul style='margin-top:0in' type=disc><li style='margin: 0 0;color:#2F5597;'>vkc2.3.3-20180829.sql<o:p></o:p></li></ul><br>" +
@@ -264,19 +281,19 @@ namespace TFSTool
             body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
             body.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
             body.Append(string.Format("<td width=760 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
-
+            body.AppendLine("</tr>");
             foreach (VKWorkItem wi in vKWorkItemsRtn)
             {
                 body.Append("<tr style='height:17.15pt'>");
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.WorkItemType.Replace("Product Backlog Item", "PBI")));
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ID));
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Title));
-                body.Append("</tr>");
+                body.AppendLine("</tr>");
             }
             body.Append("</table>");
             body.Append("<p style='margin: 0 0;color:#2F5597;'>&nbsp;<o:p></o:p></p>" +
                 "<p style='margin: 0 0;color:#2F5597;'>Thanks.<o:p></o:p></p><p style='margin: 0 0;color:#2F5597;'><br>Regards,<o:p></o:p></p>" +
-                "<p style='margin: 0 0;color:#2F5597;'>Ben<o:p></o:p></p>");
+                "<p style='margin: 0 0;color:#2F5597;'>Ben<o:p></o:p></p></BODY></HTML>");
 
             return body.ToStringEx();
         }
@@ -301,6 +318,12 @@ namespace TFSTool
 
             return vKWorkItemsRtn;
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

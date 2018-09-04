@@ -40,7 +40,7 @@ namespace TFSTool
             if (textCC.Text.ToStringEx().IsNullOrEmpty())
                 textCC.Text = "Bensong2017@hotmail.com";
             if (txtUrl.Text.ToStringEx().IsNullOrEmpty())
-                txtUrl.Text = "http://test.com:8080/tfs/DefaultCollection";
+                txtUrl.Text = "http://ogmcshyaptf01.logon.ds.ge.com:8080/tfs/DefaultCollection";
             if (txtQuery.Text.ToStringEx().IsNullOrEmpty())
                 txtQuery.Text = string.Format("SELECT * FROM WorkItems WHERE {0}", "[System.TeamProject] = 'VKC2' AND[System.Id] > 23186");
             textSubject.Text = string.Format("VKC2 Released @{0}",DateTime.Now.ToString("yyyy/MM/dd"));
