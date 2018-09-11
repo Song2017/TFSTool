@@ -271,13 +271,14 @@ namespace TFSTool
         {
             StringBuilder body = new StringBuilder();
 
-            body.Append(string.Format("<HTML><BODY contentEditable='true'><p style='margin: 0 0;color:#2F5597;'>Hi All,<o:p></o:p></p><br>" +
-                "<p style='margin: 0 0;color:#2F5597;'><b><span style='background:yellow;mso-highlight:yellow'>Sprint {0}</span></b></p><br>" +
-                "<p style='margin: 0 0;color:#2F5597;'>VKC2 released @ ~{1} with script run. &nbsp; &nbsp;<o:p></o:p></p>" +
-                "<ul style='margin-top:0in' type=disc><li style='margin: 0 0;color:#2F5597;'>vkc2.3.3-20180829.sql<o:p></o:p></li></ul><br>" +
-                "<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>", sprintNum, DateTime.Now.ToString("HH:mm MMMM dd")));
+            body.AppendLine(string.Format("<HTML><BODY contentEditable='true'><p style='margin: 0 0;color:#2F5597;'>Hi All,<o:p></o:p></p><br>" +
+                "<p style='margin: 0 0;color:#2F5597;'><b><span style='background:yellow;mso-highlight:yellow'>Sprint {0}</span></b></p><br>", sprintNum));
+            body.AppendLine(string.Format("<p style='margin: 0 0;color:#2F5597;'>VKC2 released @ ~{0} with script run. &nbsp; &nbsp;<o:p></o:p></p>", 
+                DateTime.Now.ToString("HH:mm MMMM dd")));
+            body.AppendLine(string.Format("<ul style='margin-top:0in' type=disc><li style='margin: 0 0;color:#2F5597;'>vkc2.3.3-{0}.sql<o:p></o:p></li></ul><br>" +
+                "<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>", DateTime.Now.ToString("yyyyMMdd")));
             body.Append("<table class='MsoNormalTable' width=1393 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
-            body.Append("<tr style='height:17.15pt'>");
+            body.AppendLine("<tr style='height:17.15pt'>");
             body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
             body.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
             body.Append(string.Format("<td width=760 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
@@ -318,12 +319,6 @@ namespace TFSTool
 
             return vKWorkItemsRtn;
         }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
     }
 }
