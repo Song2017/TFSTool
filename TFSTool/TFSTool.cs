@@ -276,7 +276,7 @@ namespace TFSTool
             body.AppendLine(string.Format("<p style='margin: 0 0;color:#2F5597;'>VKC2 released @ ~{0} with script run. &nbsp; &nbsp;<o:p></o:p></p>", 
                 DateTime.Now.ToString("HH:mm MMMM dd")));
             body.AppendLine(string.Format("<ul style='margin-top:0in' type=disc><li style='margin: 0 0;color:#2F5597;'>vkc2.3.3-{0}.sql<o:p></o:p></li></ul><br>" +
-                "<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>", DateTime.Now.ToString("yyyyMMdd")));
+                "<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>", DateTime.Now.AddDays(-1).ToString("yyyyMMdd")));
             body.Append("<table class='MsoNormalTable' width=1393 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
             body.AppendLine("<tr style='height:17.15pt'>");
             body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
