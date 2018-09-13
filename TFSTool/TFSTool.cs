@@ -42,6 +42,12 @@ namespace TFSTool
             textSubject.Text = $"VKC2 released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
 
             tableLayoutPanel2.Visible = false;
+
+            checkedListStatus.SetItemChecked(2, true);
+            checkedListStatus.SetItemChecked(3, true);
+            checkedListType.SetItemChecked(0, true);
+            checkedListType.SetItemChecked(2, true);
+            checkedListType.SetItemChecked(4, true);
         }
 
 
@@ -264,7 +270,7 @@ namespace TFSTool
             _vKWorkItemsCache = GetSpecficDateWorkItems(vKWorkItemsRtn, dateTime, dateTimeEnd);
 
             //set email content
-            vKWorkItemsRtn = GetSpecficDateWorkItems(_vKWorkItemsCache, dateTime, dateTimeEnd, true);
+            vKWorkItemsRtn = GetSpecficDateWorkItems(_vKWorkItemsCache, dateTime, dateTimeEnd);
             string strEmailContent = SetEmailContent(vKWorkItemsRtn, sprintNum);
             if (!strEmailContent.IsNullOrEmpty())
                 webBrowserShow.DocumentText = strEmailContent.ToStringEx();
@@ -302,11 +308,28 @@ namespace TFSTool
             return body.ToStringEx();
         }
 
-        private List<VKWorkItem> GetSpecficDateWorkItems(List<VKWorkItem> vKWorkItems, DateTime dateTime, DateTime dateTimeEnd, bool isFileterStatus = false)
+        private List<VKWorkItem> GetSpecficDateWorkItems(List<VKWorkItem> vKWorkItems, DateTime dateTime, DateTime dateTimeEnd)
         {
             List<VKWorkItem> vKWorkItemsRtn = new List<VKWorkItem>();
             if (vKWorkItems == null || dateTime == null)
                 return vKWorkItems;
+
+            string status = string.Empty;
+            foreach (var item in checkedListStatus.CheckedItems)
+                status += item.ToStringEx() + ",";
+
+            bool isFileterStatus = false;
+            if (!status.IsNullOrEmpty())
+                isFileterStatus = true;
+
+            string type = string.Empty;
+            foreach (var item in checkedListType.CheckedItems)
+                type += item.ToStringEx() + ",";
+
+            bool isType = false;
+            if (!status.IsNullOrEmpty())
+                isType = true;
+
 
             foreach (VKWorkItem wi in vKWorkItems)
             {
@@ -314,7 +337,14 @@ namespace TFSTool
                     continue;
                 if (dateTimeEnd != null && (wi.ChangedDate.DayOfYear > dateTimeEnd.DayOfYear))
                     continue;
-                if (isFileterStatus && !(wi.State.Equals("Done") || wi.State.Equals("Resolved")))
+
+                if (isFileterStatus && !status.Contains(wi.State))
+                    continue;
+
+                if (isType && !type.Contains(wi.WorkItemType))
+                    continue;
+
+                if (type.Contains("Test Case") && wi.Title.ToUpper().StartsWith("TEST"))
                     continue;
 
                 vKWorkItemsRtn.Add(wi);
@@ -322,7 +352,6 @@ namespace TFSTool
 
             return vKWorkItemsRtn;
         }
-
-      
+ 
     }
 }

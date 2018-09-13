@@ -56,6 +56,8 @@
             this.btnSaveLocal = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.checkedListStatus = new System.Windows.Forms.CheckedListBox();
+            this.checkedListType = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -63,7 +65,7 @@
             // 
             // buttonReceive
             // 
-            this.buttonReceive.Location = new System.Drawing.Point(744, 64);
+            this.buttonReceive.Location = new System.Drawing.Point(785, 64);
             this.buttonReceive.Name = "buttonReceive";
             this.buttonReceive.Size = new System.Drawing.Size(75, 23);
             this.buttonReceive.TabIndex = 38;
@@ -72,7 +74,7 @@
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(744, 117);
+            this.buttonSend.Location = new System.Drawing.Point(785, 117);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 23);
             this.buttonSend.TabIndex = 39;
@@ -92,7 +94,7 @@
             // 
             this.textTo.Location = new System.Drawing.Point(70, 40);
             this.textTo.Name = "textTo";
-            this.textTo.Size = new System.Drawing.Size(503, 20);
+            this.textTo.Size = new System.Drawing.Size(300, 20);
             this.textTo.TabIndex = 41;
             // 
             // labelCC
@@ -153,7 +155,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(802, 404);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(802, 360);
             this.tableLayoutPanel1.TabIndex = 47;
             // 
             // webBrowserShow
@@ -162,7 +164,7 @@
             this.webBrowserShow.Location = new System.Drawing.Point(3, 3);
             this.webBrowserShow.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserShow.Name = "webBrowserShow";
-            this.webBrowserShow.Size = new System.Drawing.Size(796, 398);
+            this.webBrowserShow.Size = new System.Drawing.Size(796, 354);
             this.webBrowserShow.TabIndex = 2;
             this.webBrowserShow.Url = new System.Uri("", System.UriKind.Relative);
             // 
@@ -231,7 +233,7 @@
             // 
             this.txtSprintNum.Location = new System.Drawing.Point(453, 92);
             this.txtSprintNum.Name = "txtSprintNum";
-            this.txtSprintNum.Size = new System.Drawing.Size(120, 20);
+            this.txtSprintNum.Size = new System.Drawing.Size(96, 20);
             this.txtSprintNum.TabIndex = 52;
             // 
             // label2
@@ -264,9 +266,9 @@
             // 
             // dateTimePickerEnd
             // 
-            this.dateTimePickerEnd.CustomFormat = "yyyy-MM-dd 00:00:00";
+            this.dateTimePickerEnd.CustomFormat = "yyyy-MM-dd 23:59:59";
             this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(373, 118);
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(349, 118);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
             this.dateTimePickerEnd.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerEnd.TabIndex = 57;
@@ -275,7 +277,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(315, 122);
+            this.label3.Location = new System.Drawing.Point(291, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 56;
@@ -283,7 +285,7 @@
             // 
             // btnSaveLocal
             // 
-            this.btnSaveLocal.Location = new System.Drawing.Point(744, 90);
+            this.btnSaveLocal.Location = new System.Drawing.Point(785, 90);
             this.btnSaveLocal.Name = "btnSaveLocal";
             this.btnSaveLocal.Size = new System.Drawing.Size(75, 23);
             this.btnSaveLocal.TabIndex = 58;
@@ -302,7 +304,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.richTextBox1, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(43, 165);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(63, 165);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51F));
@@ -320,11 +322,53 @@
             this.richTextBox1.TabIndex = 54;
             this.richTextBox1.Text = "";
             // 
+            // checkedListStatus
+            // 
+            this.checkedListStatus.FormattingEnabled = true;
+            this.checkedListStatus.Items.AddRange(new object[] {
+            "Committed",
+            "Approved",
+            "Done",
+            "Resolved",
+            "Closed",
+            "Created",
+            "In Review",
+            "To Do",
+            "In Progress",
+            "Removed",
+            "New",
+            "Deferred",
+            "Activated",
+            "Design",
+            "Ready",
+            "Closed"});
+            this.checkedListStatus.Location = new System.Drawing.Point(664, 31);
+            this.checkedListStatus.Name = "checkedListStatus";
+            this.checkedListStatus.Size = new System.Drawing.Size(103, 109);
+            this.checkedListStatus.TabIndex = 60;
+            // 
+            // checkedListType
+            // 
+            this.checkedListType.FormattingEnabled = true;
+            this.checkedListType.Items.AddRange(new object[] {
+            "Bug",
+            "Impediment",
+            "Product Backlog Item",
+            "Sprint",
+            "Task",
+            "Test Case"});
+            this.checkedListType.Location = new System.Drawing.Point(555, 31);
+            this.checkedListType.Name = "checkedListType";
+            this.checkedListType.Size = new System.Drawing.Size(103, 109);
+            this.checkedListType.TabIndex = 61;
+            // 
             // TFSTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 537);
+            this.Controls.Add(this.checkedListType);
+            this.Controls.Add(this.checkedListStatus);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.btnSaveLocal);
             this.Controls.Add(this.dateTimePickerEnd);
@@ -385,5 +429,7 @@
         private System.Windows.Forms.Button btnSaveLocal;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.CheckedListBox checkedListStatus;
+        private System.Windows.Forms.CheckedListBox checkedListType;
     }
 }
