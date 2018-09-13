@@ -38,7 +38,10 @@ namespace TFSTool
             dateTimePickerEnd.Value = DateTime.Now;
 
             txtSprintNum.Text = Utils.GetConfig("sprintnum");
-            richTextBox1.Visible = false;
+
+            textSubject.Text = $"VKC2 released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
+
+            tableLayoutPanel2.Visible = false;
         }
 
 
@@ -55,7 +58,7 @@ namespace TFSTool
             this.loadToolStripMenuItem.Click += delegate { this.SetUICredentials(); };
             this.editEmailToolStripMenuItem.Click += delegate
             {
-                richTextBox1.Visible = !richTextBox1.Visible;
+                tableLayoutPanel2.Visible = !tableLayoutPanel2.Visible;
                 tableLayoutPanel1.Visible = !tableLayoutPanel1.Visible;
                 if (toEdit)
                 {
@@ -320,5 +323,6 @@ namespace TFSTool
             return vKWorkItemsRtn;
         }
 
+      
     }
 }

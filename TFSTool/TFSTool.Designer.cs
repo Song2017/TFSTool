@@ -49,14 +49,16 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.txtSprintNum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSaveLocal = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonReceive
@@ -90,7 +92,7 @@
             // 
             this.textTo.Location = new System.Drawing.Point(70, 40);
             this.textTo.Name = "textTo";
-            this.textTo.Size = new System.Drawing.Size(583, 20);
+            this.textTo.Size = new System.Drawing.Size(503, 20);
             this.textTo.TabIndex = 41;
             // 
             // labelCC
@@ -151,7 +153,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(758, 339);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(802, 404);
             this.tableLayoutPanel1.TabIndex = 47;
             // 
             // webBrowserShow
@@ -160,7 +162,7 @@
             this.webBrowserShow.Location = new System.Drawing.Point(3, 3);
             this.webBrowserShow.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserShow.Name = "webBrowserShow";
-            this.webBrowserShow.Size = new System.Drawing.Size(752, 333);
+            this.webBrowserShow.Size = new System.Drawing.Size(796, 398);
             this.webBrowserShow.TabIndex = 2;
             this.webBrowserShow.Url = new System.Uri("", System.UriKind.Relative);
             // 
@@ -221,7 +223,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(831, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(875, 24);
             this.menuStrip1.TabIndex = 48;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -240,15 +242,6 @@
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 51;
             this.label2.Text = "Sprint Number:";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.richTextBox1.Location = new System.Drawing.Point(41, 165);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(789, 307);
-            this.richTextBox1.TabIndex = 53;
-            this.richTextBox1.Text = "";
             // 
             // dateTimePicker
             // 
@@ -297,17 +290,47 @@
             this.btnSaveLocal.Text = "Localize";
             this.btnSaveLocal.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.richTextBox1, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(43, 165);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(800, 350);
+            this.tableLayoutPanel2.TabIndex = 59;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(794, 344);
+            this.richTextBox1.TabIndex = 54;
+            this.richTextBox1.Text = "";
+            // 
             // TFSTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(831, 472);
+            this.ClientSize = new System.Drawing.Size(875, 537);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.btnSaveLocal);
             this.Controls.Add(this.dateTimePickerEnd);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.txtSprintNum);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.menuStrip1);
@@ -326,6 +349,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,11 +378,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem editEmailToolStripMenuItem;
         private System.Windows.Forms.WebBrowser webBrowserShow;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSaveLocal;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
