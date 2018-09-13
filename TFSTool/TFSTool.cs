@@ -344,7 +344,7 @@ namespace TFSTool
                 if (isType && !type.Contains(wi.WorkItemType))
                     continue;
 
-                if (type.Contains("Test Case") && wi.Title.ToUpper().StartsWith("TEST"))
+                if (!type.Contains("Test Case") && wi.Title.ToUpper().StartsWith("TEST"))
                     continue;
 
                 vKWorkItemsRtn.Add(wi);
