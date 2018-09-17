@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TFSTool));
             this.buttonReceive = new System.Windows.Forms.Button();
             this.buttonSend = new System.Windows.Forms.Button();
             this.labelTo = new System.Windows.Forms.Label();
@@ -58,6 +59,8 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.checkedListStatus = new System.Windows.Forms.CheckedListBox();
             this.checkedListType = new System.Windows.Forms.CheckedListBox();
+            this.txtFromName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -65,107 +68,62 @@
             // 
             // buttonReceive
             // 
-            this.buttonReceive.Location = new System.Drawing.Point(785, 64);
+            resources.ApplyResources(this.buttonReceive, "buttonReceive");
             this.buttonReceive.Name = "buttonReceive";
-            this.buttonReceive.Size = new System.Drawing.Size(75, 23);
-            this.buttonReceive.TabIndex = 38;
-            this.buttonReceive.Text = "TFSData";
             this.buttonReceive.UseVisualStyleBackColor = true;
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(785, 117);
+            resources.ApplyResources(this.buttonSend, "buttonSend");
             this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(75, 23);
-            this.buttonSend.TabIndex = 39;
-            this.buttonSend.Text = "Email";
             this.buttonSend.UseVisualStyleBackColor = true;
             // 
             // labelTo
             // 
-            this.labelTo.AutoSize = true;
-            this.labelTo.Location = new System.Drawing.Point(41, 42);
+            resources.ApplyResources(this.labelTo, "labelTo");
             this.labelTo.Name = "labelTo";
-            this.labelTo.Size = new System.Drawing.Size(23, 13);
-            this.labelTo.TabIndex = 40;
-            this.labelTo.Text = "To:";
             // 
             // textTo
             // 
-            this.textTo.Location = new System.Drawing.Point(70, 40);
+            resources.ApplyResources(this.textTo, "textTo");
             this.textTo.Name = "textTo";
-            this.textTo.Size = new System.Drawing.Size(300, 20);
-            this.textTo.TabIndex = 41;
             // 
             // labelCC
             // 
-            this.labelCC.AutoSize = true;
-            this.labelCC.Location = new System.Drawing.Point(40, 69);
+            resources.ApplyResources(this.labelCC, "labelCC");
             this.labelCC.Name = "labelCC";
-            this.labelCC.Size = new System.Drawing.Size(24, 13);
-            this.labelCC.TabIndex = 42;
-            this.labelCC.Text = "CC:";
             // 
             // textCC
             // 
-            this.textCC.Location = new System.Drawing.Point(70, 66);
+            resources.ApplyResources(this.textCC, "textCC");
             this.textCC.Name = "textCC";
-            this.textCC.Size = new System.Drawing.Size(300, 20);
-            this.textCC.TabIndex = 43;
             // 
             // labelSubject
             // 
-            this.labelSubject.AutoSize = true;
-            this.labelSubject.Location = new System.Drawing.Point(18, 95);
+            resources.ApplyResources(this.labelSubject, "labelSubject");
             this.labelSubject.Name = "labelSubject";
-            this.labelSubject.Size = new System.Drawing.Size(46, 13);
-            this.labelSubject.TabIndex = 44;
-            this.labelSubject.Text = "Subject:";
             // 
             // textSubject
             // 
-            this.textSubject.Location = new System.Drawing.Point(70, 92);
+            resources.ApplyResources(this.textSubject, "textSubject");
             this.textSubject.Name = "textSubject";
-            this.textSubject.Size = new System.Drawing.Size(300, 20);
-            this.textSubject.TabIndex = 45;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 149);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 46;
-            this.label5.Text = "Message:";
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.webBrowserShow, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(70, 146);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(802, 360);
-            this.tableLayoutPanel1.TabIndex = 47;
             // 
             // webBrowserShow
             // 
-            this.webBrowserShow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserShow.Location = new System.Drawing.Point(3, 3);
-            this.webBrowserShow.MinimumSize = new System.Drawing.Size(20, 20);
+            resources.ApplyResources(this.webBrowserShow, "webBrowserShow");
             this.webBrowserShow.Name = "webBrowserShow";
-            this.webBrowserShow.Size = new System.Drawing.Size(796, 354);
-            this.webBrowserShow.TabIndex = 2;
             this.webBrowserShow.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // toolsToolStripMenuItem
@@ -175,26 +133,22 @@
             this.loadToolStripMenuItem,
             this.editEmailToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
+            resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             // 
             // ConfigToolStripMenuItem
             // 
             this.ConfigToolStripMenuItem.Name = "ConfigToolStripMenuItem";
-            this.ConfigToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.ConfigToolStripMenuItem.Text = "Configure Credentials";
+            resources.ApplyResources(this.ConfigToolStripMenuItem, "ConfigToolStripMenuItem");
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.loadToolStripMenuItem.Text = "Load Credentials";
+            resources.ApplyResources(this.loadToolStripMenuItem, "loadToolStripMenuItem");
             // 
             // editEmailToolStripMenuItem
             // 
             this.editEmailToolStripMenuItem.Name = "editEmailToolStripMenuItem";
-            this.editEmailToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.editEmailToolStripMenuItem.Text = "Edit Email";
+            resources.ApplyResources(this.editEmailToolStripMenuItem, "editEmailToolStripMenuItem");
             // 
             // helpToolStripMenuItem
             // 
@@ -202,20 +156,17 @@
             this.tipsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             // 
             // tipsToolStripMenuItem
             // 
             this.tipsToolStripMenuItem.Name = "tipsToolStripMenuItem";
-            this.tipsToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.tipsToolStripMenuItem.Text = "Tips";
+            resources.ApplyResources(this.tipsToolStripMenuItem, "tipsToolStripMenuItem");
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.aboutToolStripMenuItem.Text = "About";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             // 
             // menuStrip1
             // 
@@ -223,150 +174,115 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(875, 24);
-            this.menuStrip1.TabIndex = 48;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // txtSprintNum
             // 
-            this.txtSprintNum.Location = new System.Drawing.Point(453, 92);
+            resources.ApplyResources(this.txtSprintNum, "txtSprintNum");
             this.txtSprintNum.Name = "txtSprintNum";
-            this.txtSprintNum.Size = new System.Drawing.Size(96, 20);
-            this.txtSprintNum.TabIndex = 52;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(370, 96);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 13);
-            this.label2.TabIndex = 51;
-            this.label2.Text = "Sprint Number:";
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.CustomFormat = "yyyy-MM-dd 00:00:00";
+            resources.ApplyResources(this.dateTimePicker, "dateTimePicker");
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(73, 118);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker.TabIndex = 55;
             this.dateTimePicker.Value = new System.DateTime(2018, 9, 2, 15, 45, 43, 0);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 121);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "BeginDate:";
             // 
             // dateTimePickerEnd
             // 
-            this.dateTimePickerEnd.CustomFormat = "yyyy-MM-dd 23:59:59";
+            resources.ApplyResources(this.dateTimePickerEnd, "dateTimePickerEnd");
             this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(349, 118);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
-            this.dateTimePickerEnd.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerEnd.TabIndex = 57;
             this.dateTimePickerEnd.Value = new System.DateTime(2018, 9, 2, 15, 45, 43, 0);
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(291, 122);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 56;
-            this.label3.Text = "EndDate:";
             // 
             // btnSaveLocal
             // 
-            this.btnSaveLocal.Location = new System.Drawing.Point(785, 90);
+            resources.ApplyResources(this.btnSaveLocal, "btnSaveLocal");
             this.btnSaveLocal.Name = "btnSaveLocal";
-            this.btnSaveLocal.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveLocal.TabIndex = 58;
-            this.btnSaveLocal.Text = "Localize";
             this.btnSaveLocal.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.AutoSize = true;
-            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.richTextBox1, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(63, 165);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(800, 350);
-            this.tableLayoutPanel2.TabIndex = 59;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
+            resources.ApplyResources(this.richTextBox1, "richTextBox1");
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(794, 344);
-            this.richTextBox1.TabIndex = 54;
-            this.richTextBox1.Text = "";
             // 
             // checkedListStatus
             // 
+            this.checkedListStatus.CheckOnClick = true;
             this.checkedListStatus.FormattingEnabled = true;
             this.checkedListStatus.Items.AddRange(new object[] {
-            "Committed",
-            "Approved",
-            "Done",
-            "Resolved",
-            "Closed",
-            "Created",
-            "In Review",
-            "To Do",
-            "In Progress",
-            "Removed",
-            "New",
-            "Deferred",
-            "Activated",
-            "Design",
-            "Ready",
-            "Closed"});
-            this.checkedListStatus.Location = new System.Drawing.Point(664, 31);
+            resources.GetString("checkedListStatus.Items"),
+            resources.GetString("checkedListStatus.Items1"),
+            resources.GetString("checkedListStatus.Items2"),
+            resources.GetString("checkedListStatus.Items3"),
+            resources.GetString("checkedListStatus.Items4"),
+            resources.GetString("checkedListStatus.Items5"),
+            resources.GetString("checkedListStatus.Items6"),
+            resources.GetString("checkedListStatus.Items7"),
+            resources.GetString("checkedListStatus.Items8"),
+            resources.GetString("checkedListStatus.Items9"),
+            resources.GetString("checkedListStatus.Items10"),
+            resources.GetString("checkedListStatus.Items11"),
+            resources.GetString("checkedListStatus.Items12"),
+            resources.GetString("checkedListStatus.Items13"),
+            resources.GetString("checkedListStatus.Items14"),
+            resources.GetString("checkedListStatus.Items15")});
+            resources.ApplyResources(this.checkedListStatus, "checkedListStatus");
             this.checkedListStatus.Name = "checkedListStatus";
-            this.checkedListStatus.Size = new System.Drawing.Size(103, 109);
-            this.checkedListStatus.TabIndex = 60;
             // 
             // checkedListType
             // 
+            this.checkedListType.CheckOnClick = true;
             this.checkedListType.FormattingEnabled = true;
             this.checkedListType.Items.AddRange(new object[] {
-            "Bug",
-            "Impediment",
-            "Product Backlog Item",
-            "Sprint",
-            "Task",
-            "Test Case"});
-            this.checkedListType.Location = new System.Drawing.Point(555, 31);
+            resources.GetString("checkedListType.Items"),
+            resources.GetString("checkedListType.Items1"),
+            resources.GetString("checkedListType.Items2"),
+            resources.GetString("checkedListType.Items3"),
+            resources.GetString("checkedListType.Items4"),
+            resources.GetString("checkedListType.Items5")});
+            resources.ApplyResources(this.checkedListType, "checkedListType");
             this.checkedListType.Name = "checkedListType";
-            this.checkedListType.Size = new System.Drawing.Size(103, 109);
-            this.checkedListType.TabIndex = 61;
+            // 
+            // txtFromName
+            // 
+            resources.ApplyResources(this.txtFromName, "txtFromName");
+            this.txtFromName.Name = "txtFromName";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
             // 
             // TFSTool
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 537);
+            this.Controls.Add(this.txtFromName);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.checkedListType);
             this.Controls.Add(this.checkedListStatus);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -389,7 +305,6 @@
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.buttonReceive);
             this.Name = "TFSTool";
-            this.Text = "TFSTool";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -431,5 +346,7 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.CheckedListBox checkedListStatus;
         private System.Windows.Forms.CheckedListBox checkedListType;
+        private System.Windows.Forms.TextBox txtFromName;
+        private System.Windows.Forms.Label label4;
     }
 }

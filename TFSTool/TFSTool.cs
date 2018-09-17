@@ -38,7 +38,7 @@ namespace TFSTool
             dateTimePickerEnd.Value = DateTime.Now;
 
             txtSprintNum.Text = Utils.GetConfig("sprintnum");
-
+            txtFromName.Text = Utils.GetConfig("fromname");
             textSubject.Text = $"VKC2 released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
 
             tableLayoutPanel2.Visible = false;
@@ -139,6 +139,14 @@ namespace TFSTool
                     return;
 
                 Utils.SaveConfig("sprintnum", txtSprintNum.Text);
+            };
+
+            txtFromName.KeyPress += delegate (object sender, KeyPressEventArgs e)
+            {
+                if (e.KeyChar != (char)Keys.Return)
+                    return;
+
+                Utils.SaveConfig("fromname", txtFromName.Text);
             };
         }
 
@@ -303,7 +311,7 @@ namespace TFSTool
             body.Append("</table>");
             body.Append("<p style='margin: 0 0;color:#2F5597;'>&nbsp;<o:p></o:p></p>" +
                 "<p style='margin: 0 0;color:#2F5597;'>Thanks.<o:p></o:p></p><p style='margin: 0 0;color:#2F5597;'><br>Regards,<o:p></o:p></p>" +
-                "<p style='margin: 0 0;color:#2F5597;'>Ben<o:p></o:p></p></BODY></HTML>");
+                $"<p style='margin: 0 0;color:#2F5597;'>{txtFromName.Text.ToStringEx()}<o:p></o:p></p></BODY></HTML>");
 
             return body.ToStringEx();
         }
