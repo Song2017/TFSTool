@@ -2,6 +2,7 @@
 using Microsoft.Office.Interop.Outlook;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -41,7 +42,7 @@ namespace TFSTool
             txtFromName.Text = Utils.GetConfig("fromname");
             textSubject.Text = $"VKC2 released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
 
-            tableLayoutPanel2.Visible = false;
+            tlpText.Visible = false;
 
             checkedListStatus.SetItemChecked(2, true);
             checkedListStatus.SetItemChecked(3, true);
@@ -53,7 +54,6 @@ namespace TFSTool
 
         private void InitMethod()
         {
-            bool toEdit = true;
             this.ConfigToolStripMenuItem.Click += delegate (object sender, EventArgs e)
             {
                 if (this.SetCredentials())
@@ -64,17 +64,17 @@ namespace TFSTool
             this.loadToolStripMenuItem.Click += delegate { this.SetUICredentials(); };
             this.editEmailToolStripMenuItem.Click += delegate
             {
-                tableLayoutPanel2.Visible = !tableLayoutPanel2.Visible;
-                tableLayoutPanel1.Visible = !tableLayoutPanel1.Visible;
-                if (toEdit)
+                tlpText.Visible = !tlpText.Visible;
+                tlpBrowser.Visible = !tlpBrowser.Visible;
+                buttonSend.Enabled = buttonReceive.Enabled = buttonSaveLocal.Enabled = tlpBrowser.Visible;
+
+                if (tlpText.Visible)
                 {
-                    richTextBox1.Text = webBrowserShow.DocumentText.ToStringEx();
-                    toEdit = false;
+                    richTextBox1.Text = webBrowserShow.Document.ActiveElement.InnerHtml.ToStringEx(); 
                 }
                 else
                 {
-                    webBrowserShow.DocumentText = richTextBox1.Text.ToStringEx();
-                    toEdit = true;
+                    webBrowserShow.DocumentText = $"<HTML><BODY contentEditable='true'>{richTextBox1.Text.ToStringEx()}</BODY></HTML>";
                 }
             };
             this.tipsToolStripMenuItem.Click += delegate (object sender, EventArgs e)
@@ -118,7 +118,7 @@ namespace TFSTool
                 PrepareVKWorkItems();
             };
 
-            btnSaveLocal.Click += delegate
+            buttonSaveLocal.Click += delegate
             {
                 if (_vKWorkItemsCache == null || _vKWorkItemsCache.Count <= 0)
                 {
@@ -148,7 +148,10 @@ namespace TFSTool
 
                 Utils.SaveConfig("fromname", txtFromName.Text);
             };
+
+           
         }
+         
 
         private bool SendEmail()
         {

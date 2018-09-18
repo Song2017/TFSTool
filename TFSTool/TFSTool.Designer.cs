@@ -38,7 +38,7 @@
             this.labelSubject = new System.Windows.Forms.Label();
             this.textSubject = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpBrowser = new System.Windows.Forms.TableLayoutPanel();
             this.webBrowserShow = new System.Windows.Forms.WebBrowser();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,16 +54,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnSaveLocal = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonSaveLocal = new System.Windows.Forms.Button();
+            this.tlpText = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.checkedListStatus = new System.Windows.Forms.CheckedListBox();
             this.checkedListType = new System.Windows.Forms.CheckedListBox();
             this.txtFromName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpBrowser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tlpText.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonReceive
@@ -113,12 +113,12 @@
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
-            // tableLayoutPanel1
+            // tlpBrowser
             // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.Controls.Add(this.webBrowserShow, 0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            resources.ApplyResources(this.tlpBrowser, "tlpBrowser");
+            this.tlpBrowser.BackColor = System.Drawing.Color.Transparent;
+            this.tlpBrowser.Controls.Add(this.webBrowserShow, 0, 0);
+            this.tlpBrowser.Name = "tlpBrowser";
             // 
             // webBrowserShow
             // 
@@ -211,18 +211,18 @@
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
-            // btnSaveLocal
+            // buttonSaveLocal
             // 
-            resources.ApplyResources(this.btnSaveLocal, "btnSaveLocal");
-            this.btnSaveLocal.Name = "btnSaveLocal";
-            this.btnSaveLocal.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.buttonSaveLocal, "buttonSaveLocal");
+            this.buttonSaveLocal.Name = "buttonSaveLocal";
+            this.buttonSaveLocal.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel2
+            // tlpText
             // 
-            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel2.Controls.Add(this.richTextBox1, 0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            resources.ApplyResources(this.tlpText, "tlpText");
+            this.tlpText.BackColor = System.Drawing.Color.Transparent;
+            this.tlpText.Controls.Add(this.richTextBox1, 0, 0);
+            this.tlpText.Name = "tlpText";
             // 
             // richTextBox1
             // 
@@ -285,8 +285,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkedListType);
             this.Controls.Add(this.checkedListStatus);
-            this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.btnSaveLocal);
+            this.Controls.Add(this.tlpText);
+            this.Controls.Add(this.buttonSaveLocal);
             this.Controls.Add(this.dateTimePickerEnd);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePicker);
@@ -294,7 +294,7 @@
             this.Controls.Add(this.txtSprintNum);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlpBrowser);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textSubject);
             this.Controls.Add(this.labelSubject);
@@ -305,10 +305,10 @@
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.buttonReceive);
             this.Name = "TFSTool";
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tlpBrowser.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tlpText.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,7 +325,7 @@
         private System.Windows.Forms.Label labelSubject;
         private System.Windows.Forms.TextBox textSubject;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpBrowser;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConfigToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
@@ -341,8 +341,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnSaveLocal;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button buttonSaveLocal;
+        private System.Windows.Forms.TableLayoutPanel tlpText;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.CheckedListBox checkedListStatus;
         private System.Windows.Forms.CheckedListBox checkedListType;

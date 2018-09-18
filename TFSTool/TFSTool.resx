@@ -339,16 +339,16 @@
     <value>14</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tableLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="tlpBrowser.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="tableLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tlpBrowser.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="tableLayoutPanel1.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="tlpBrowser.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+  <data name="tlpBrowser.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="&gt;&gt;webBrowserShow.Name" xml:space="preserve">
@@ -358,36 +358,36 @@
     <value>System.Windows.Forms.WebBrowser, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;webBrowserShow.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+    <value>tlpBrowser</value>
   </data>
   <data name="&gt;&gt;webBrowserShow.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tlpBrowser.Location" type="System.Drawing.Point, System.Drawing">
     <value>70, 146</value>
   </data>
-  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+  <data name="tlpBrowser.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tlpBrowser.Size" type="System.Drawing.Size, System.Drawing">
     <value>802, 360</value>
   </data>
-  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+  <data name="tlpBrowser.TabIndex" type="System.Int32, mscorlib">
     <value>47</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="&gt;&gt;tlpBrowser.Name" xml:space="preserve">
+    <value>tlpBrowser</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+  <data name="&gt;&gt;tlpBrowser.Type" xml:space="preserve">
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tlpBrowser.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tlpBrowser.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+  <data name="tlpBrowser.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="webBrowserShow" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,51,Percent,49" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="webBrowserShow.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -412,7 +412,7 @@
     <value>System.Windows.Forms.WebBrowser, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;webBrowserShow.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+    <value>tlpBrowser</value>
   </data>
   <data name="&gt;&gt;webBrowserShow.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -636,40 +636,40 @@
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="btnSaveLocal.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="buttonSaveLocal.Location" type="System.Drawing.Point, System.Drawing">
     <value>785, 90</value>
   </data>
-  <data name="btnSaveLocal.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="buttonSaveLocal.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="btnSaveLocal.TabIndex" type="System.Int32, mscorlib">
+  <data name="buttonSaveLocal.TabIndex" type="System.Int32, mscorlib">
     <value>58</value>
   </data>
-  <data name="btnSaveLocal.Text" xml:space="preserve">
+  <data name="buttonSaveLocal.Text" xml:space="preserve">
     <value>Localize</value>
   </data>
-  <data name="&gt;&gt;btnSaveLocal.Name" xml:space="preserve">
-    <value>btnSaveLocal</value>
+  <data name="&gt;&gt;buttonSaveLocal.Name" xml:space="preserve">
+    <value>buttonSaveLocal</value>
   </data>
-  <data name="&gt;&gt;btnSaveLocal.Type" xml:space="preserve">
+  <data name="&gt;&gt;buttonSaveLocal.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnSaveLocal.Parent" xml:space="preserve">
+  <data name="&gt;&gt;buttonSaveLocal.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnSaveLocal.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;buttonSaveLocal.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="tableLayoutPanel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="tlpText.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="tableLayoutPanel2.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tlpText.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="tableLayoutPanel2.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="tlpText.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
+  <data name="tlpText.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="&gt;&gt;richTextBox1.Name" xml:space="preserve">
@@ -679,36 +679,36 @@
     <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;richTextBox1.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
+    <value>tlpText</value>
   </data>
   <data name="&gt;&gt;richTextBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tableLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tlpText.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 165</value>
   </data>
-  <data name="tableLayoutPanel2.RowCount" type="System.Int32, mscorlib">
+  <data name="tlpText.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tlpText.Size" type="System.Drawing.Size, System.Drawing">
     <value>800, 350</value>
   </data>
-  <data name="tableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
+  <data name="tlpText.TabIndex" type="System.Int32, mscorlib">
     <value>59</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Name" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
+  <data name="&gt;&gt;tlpText.Name" xml:space="preserve">
+    <value>tlpText</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Type" xml:space="preserve">
+  <data name="&gt;&gt;tlpText.Type" xml:space="preserve">
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tlpText.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tlpText.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+  <data name="tlpText.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="richTextBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,51,Percent,49" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="richTextBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -736,7 +736,7 @@
     <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;richTextBox1.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
+    <value>tlpText</value>
   </data>
   <data name="&gt;&gt;richTextBox1.ZOrder" xml:space="preserve">
     <value>0</value>
