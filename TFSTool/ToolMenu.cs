@@ -36,14 +36,14 @@ namespace TFSTool
             this.textSubject.Text = Utils.GetConfig("subject", "");
 
             if (textTo.Text.ToStringEx().IsNullOrEmpty())
-                textTo.Text = "Bensong2017@hotmail.com";
+                textTo.Text = "your email";
             if (textCC.Text.ToStringEx().IsNullOrEmpty())
-                textCC.Text = "Bensong2017@hotmail.com";
+                textCC.Text = "your email";
             if (txtUrl.Text.ToStringEx().IsNullOrEmpty())
-                txtUrl.Text = "http://ogmcshyaptf01.logon.ds.ge.com:8080/tfs/DefaultCollection";
+                txtUrl.Text = "http://address:8080/tfs/DefaultCollection";
             if (txtQuery.Text.ToStringEx().IsNullOrEmpty())
-                txtQuery.Text = string.Format("SELECT * FROM WorkItems WHERE {0}", "[System.TeamProject] = 'VKC2' AND[System.Id] > 23186");
-            textSubject.Text = string.Format("VKC2 Released @{0}",DateTime.Now.ToString("yyyy/MM/dd"));
+                txtQuery.Text = $"SELECT * FROM WorkItems WHERE  [System.TeamProject] = '{Utils.GetConfig("proname") ?? "project name"}'";
+            textSubject.Text = string.Format("Subject @{0}", DateTime.Now.ToString("yyyy/MM/dd"));
         }
 
         private void InitMethod()

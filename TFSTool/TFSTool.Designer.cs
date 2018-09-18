@@ -61,6 +61,8 @@
             this.checkedListType = new System.Windows.Forms.CheckedListBox();
             this.txtFromName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.textPro = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tlpBrowser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tlpText.SuspendLayout();
@@ -277,10 +279,22 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
+            // textPro
+            // 
+            resources.ApplyResources(this.textPro, "textPro");
+            this.textPro.Name = "textPro";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
             // TFSTool
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textPro);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtFromName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkedListType);
@@ -348,5 +362,7 @@
         private System.Windows.Forms.CheckedListBox checkedListType;
         private System.Windows.Forms.TextBox txtFromName;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textPro;
+        private System.Windows.Forms.Label label6;
     }
 }

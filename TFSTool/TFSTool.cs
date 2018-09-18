@@ -40,7 +40,9 @@ namespace TFSTool
 
             txtSprintNum.Text = Utils.GetConfig("sprintnum");
             txtFromName.Text = Utils.GetConfig("fromname");
-            textSubject.Text = $"VKC2 released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
+            textPro.Text = Utils.GetConfig("proname");
+
+            textSubject.Text = $"{textPro.Text} released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
 
             tlpText.Visible = false;
 
@@ -149,7 +151,14 @@ namespace TFSTool
                 Utils.SaveConfig("fromname", txtFromName.Text);
             };
 
-           
+            textPro.KeyPress += delegate (object sender, KeyPressEventArgs e)
+            {
+                if (e.KeyChar != (char)Keys.Return)
+                    return;
+
+                Utils.SaveConfig("proname", textPro.Text);
+            };
+
         }
          
 
@@ -293,10 +302,10 @@ namespace TFSTool
 
             body.AppendLine(string.Format("<HTML><BODY contentEditable='true'><p style='margin: 0 0;color:#2F5597;'>Hi All,<o:p></o:p></p><br>" +
                 "<p style='margin: 0 0;color:#2F5597;'><b><span style='background:yellow;mso-highlight:yellow'>Sprint {0}</span></b></p><br>", sprintNum));
-            body.AppendLine(string.Format("<p style='margin: 0 0;color:#2F5597;'>VKC2 released @ ~{0} with script run. &nbsp; &nbsp;<o:p></o:p></p>", 
-                DateTime.Now.ToString("HH:mm MMMM dd")));
-            body.AppendLine(string.Format("<ul style='margin-top:0in' type=disc><li style='margin: 0 0;color:#2F5597;'>vkc2.3.3-{0}.sql<o:p></o:p></li></ul><br>" +
-                "<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>", DateTime.Now.AddDays(-1).ToString("yyyyMMdd")));
+            body.AppendLine($"<p style='margin: 0 0;color:#2F5597;'>{textPro.Text} released @ ~{DateTime.Now.ToString("HH:mm MMMM dd")} with script run. &nbsp; &nbsp;<o:p></o:p></p>");
+            body.AppendLine($"<ul style='margin-top:0in' type=disc>" +
+                $"<li style='margin: 0 0;color:#2F5597;'>{textPro.Text.ToStringEx().ToLower()}.3.3-{DateTime.Now.AddDays(-1).ToString("yyyyMMdd")}.sql<o:p></o:p></li></ul><br>" +
+                $"<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>");
             body.Append("<table class='MsoNormalTable' width=1393 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
             body.AppendLine("<tr style='height:17.15pt'>");
             body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
