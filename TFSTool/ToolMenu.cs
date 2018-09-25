@@ -7,7 +7,7 @@ using TFSUtils;
 
 namespace TFSTool
 {
-    public partial class ToolMenu : Form
+    public partial class ToolMenu : BaseForm
     {
         public List<KeyValuePair<string, string>> TFSCredentials { get; private set; }
 

@@ -1,8 +1,6 @@
 ﻿using Helper;
-using Microsoft.Office.Interop.Outlook;
 using System;
-using System.Collections.Generic;
-using System.IO;
+using System.Collections.Generic; 
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -129,16 +127,22 @@ namespace TFSTool
             };
             buttonSaveLocal.Click += delegate
             {
-                if (_vKWorkItemsCache == null || _vKWorkItemsCache.Count <= 0)
+                try
                 {
-                    MessageBox.Show(this, "Please get TFS data.", "TFS Data", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                    if (_vKWorkItemsCache == null || _vKWorkItemsCache.Count <= 0)
+                    {
+                        MessageBox.Show(this, "Please get TFS data.", "TFS Data", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
 
-                if (_vKWorkItemsCache.SaveWorkItemList())
-                {
-                    MessageBox.Show(this, "Success: Please find data in folder result.", "TFS Data", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                };
+                    if (_vKWorkItemsCache.SaveWorkItemList())
+                    {
+                        MessageBox.Show(this, "Success: Please find data in folder result.", "TFS Data", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    };
+                }
+                catch (Exception e) {
+                    _Log.Error("Localize error: " + e.Message);
+                }
 
             };
 
@@ -176,11 +180,12 @@ namespace TFSTool
             OutlookApplication outlookApplication = new OutlookApplication();
             try
             {
-                outlookApplication.SendEmail(OlItemType.olMailItem, textTo.Text, textCC.Text, textSubject.Text,
-                    webBrowserShow.DocumentText, OlImportance.olImportanceNormal);
+                outlookApplication.SendEmail(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem, textTo.Text, textCC.Text, textSubject.Text,
+                    webBrowserShow.DocumentText, Microsoft.Office.Interop.Outlook.OlImportance.olImportanceNormal);
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
+                _Log.Error("Send email error:" + e.Message);
                 return false;
             }
             finally
@@ -243,17 +248,36 @@ namespace TFSTool
                 try
                 {
                     TFSOperation tFSOperation = TFSOperation.Instance;
-                    if (!SetTFSInstance(ref tFSOperation))
-                        return;
 
-                    if (!tFSOperation.ConnectTFS())
-                        return;
+                    try
+                    {
+                        if (!SetTFSInstance(ref tFSOperation))
+                            return;
 
-                    List<VKWorkItem> vKWorkItems = tFSOperation.GetVKWorkItems();
-                    if (vKWorkItems == null || vKWorkItems.Count <= 0)
-                        return;
+                        if (!tFSOperation.ConnectTFS())
+                            return;
+                    }
+                    catch (Exception e)
+                    {
+                        base._Log.Error("TFS Operation:" + e.Message);
+                    }
 
-                    HandleWorkItems(vKWorkItems);
+                    try
+                    {
+                        List<VKWorkItem> vKWorkItems = tFSOperation.GetVKWorkItems();
+                        if (vKWorkItems == null || vKWorkItems.Count <= 0)
+                            return;
+
+                        HandleWorkItems(vKWorkItems);
+                    }
+                    catch (Exception e)
+                    {
+                        base._Log.Error("Items Handle error:" + e.Message);
+                    }
+
+                }
+                catch {
+                    MessageBox.Show(this, "Please check error info in logs folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -269,7 +293,7 @@ namespace TFSTool
             if (Utils.GetConfig("username").IsNullOrEmpty() || Utils.GetConfig("password").IsNullOrEmpty()
                 || tfsQuery.IsNullOrEmpty() || tfsURL.IsNullOrEmpty())
             {
-                throw new System.Exception("Please set tfs credential in app.config.");
+                throw new Exception("Please set tfs credential in app.config.");
             }
 
             tFSOperation.QuertStr = tfsQuery;
@@ -335,29 +359,35 @@ namespace TFSTool
                 return vKWorkItems;
             string[] owners = txtOwners.Text.Split(new char[] { ',' });
 
-            foreach (VKWorkItem wi in vKWorkItems)
+            try
             {
-                if (wi.ChangedDate.DayOfYear < dateTime.DayOfYear)
-                    continue;
-                if (dateTimeEnd != null && (wi.ChangedDate.DayOfYear > dateTimeEnd.DayOfYear))
-                    continue;
-
-                if (checkedListStatus.HasSelected(out string status) && !status.Contains(wi.State))
-                    continue;
-
-                if (checkedListType.HasSelected(out string type) && !type.Contains(wi.WorkItemType))
-                    continue;
-
-                if (owners.Length > 0)
+                foreach (VKWorkItem wi in vKWorkItems)
                 {
-                    foreach (var owner in owners)
-                        if (wi.AssignedTo.ToStringEx().Contains(owner))
-                            vKWorkItemsRtn.Add(wi);
+                    if (wi.ChangedDate.DayOfYear < dateTime.DayOfYear)
+                        continue;
+                    if (dateTimeEnd != null && (wi.ChangedDate.DayOfYear > dateTimeEnd.DayOfYear))
+                        continue;
+
+                    if (checkedListStatus.HasSelected(out string status) && !status.Contains(wi.State))
+                        continue;
+
+                    if (checkedListType.HasSelected(out string type) && !type.Contains(wi.WorkItemType))
+                        continue;
+
+                    if (owners.Length > 0)
+                    {
+                        foreach (var owner in owners)
+                            if (wi.AssignedTo.ToStringEx().Contains(owner))
+                                vKWorkItemsRtn.Add(wi);
+                    }
+                    else
+                    {
+                        vKWorkItemsRtn.Add(wi);
+                    }
                 }
-                else
-                {
-                    vKWorkItemsRtn.Add(wi);
-                }
+            }
+            catch (Exception e){
+
             }
 
             return vKWorkItemsRtn;

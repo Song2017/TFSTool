@@ -7,7 +7,7 @@ using TFSUtils;
 
 namespace TFSTool
 {
-    public partial class EmailContent : Form
+    public partial class EmailContent : BaseForm
     {
  
 

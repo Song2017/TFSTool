@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,28 +11,30 @@ using System.Windows.Forms;
 
 namespace TFSTool
 {
- 
-        public partial class BaseForm : Form
+
+    public partial class BaseForm : Form
+    {
+        protected Logger _Log { get; private set; }
+        public virtual ProgressBar ProgressBarControl
         {
-            public virtual ProgressBar ProgressBarControl
+            get
             {
-                get
-                {
-                    return this.progressBar;
-                }
-                set
-                {
-                    this.progressBar = value;
-                }
+                return this.progressBar;
             }
-
-
-            public BaseForm()
+            set
             {
-                this.InitializeComponent();
+                this.progressBar = value;
             }
-
-            private ProgressBar progressBar;
         }
+
+
+        public BaseForm()
+        {
+            this.InitializeComponent();
+            this._Log = LogManager.GetLogger(base.GetType().FullName);
+        }
+
+        private ProgressBar progressBar;
+    }
 
 }
