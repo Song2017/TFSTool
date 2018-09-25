@@ -17,8 +17,10 @@ namespace Helper
         {
         }
 
-        public bool ConnectToTFS(string tfsUrl, string username, string password)
+        public bool ConnectToTFS(string tfsUrl)
         {
+            string username = Utils.GetConfig("username");
+            string password = Utils.GetConfig("password");
             if (username.IsNullOrEmpty() || password.IsNullOrEmpty())
             {
                 throw new Exception("Please set tfs credential in app.config.");
@@ -55,7 +57,6 @@ namespace Helper
         {
             if (!IsConnected || _workItemStore == null)
                 return false;
-
             try
             {
                 WorkItemCollection items = _workItemStore.Query(quertStr);
@@ -72,7 +73,8 @@ namespace Helper
                         WorkItemType = wi.Type.Name.ToStringEx(),
                         StartDate = wi.CreatedDate,
                         ChangedDate = wi.ChangedDate,
-                        Description = wi.Description
+                        Description = wi.Description,
+                        AssignedTo = wi.Fields["System.AssignedTo"].Value.ToStringEx()
                     };
 
                     vkWorkItems.Add(vkWorkItem);

@@ -15,10 +15,6 @@ namespace Helper
         public string ProjectName { get; set; }
         public string QuertStr { get; set; }
 
-        public string UserName { get; set; }
-
-        public string Password { get; set; }
-
         private TFSOperation()
         {
         }
@@ -36,7 +32,7 @@ namespace Helper
 
         public bool ConnectTFS()
         {
-            return _tfs.ConnectToTFS(URL, UserName, Password);
+            return _tfs.ConnectToTFS(URL);
         }
 
         public List<VKWorkItem> GetVKWorkItems()
@@ -44,7 +40,7 @@ namespace Helper
             List<VKWorkItem> vkWorkItems = new List<VKWorkItem>();
 
 
-            if (_tfs.ConnectToTFS(URL, UserName, Password))
+            if (_tfs.ConnectToTFS(URL))
                 _tfs.GetVKWorkItems(QuertStr, ref vkWorkItems);
 
             return vkWorkItems;

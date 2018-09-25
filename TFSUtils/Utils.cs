@@ -4,11 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 
 namespace TFSUtils
 {
     public static class Utils
     {
+        // string 
         public static bool IsNullOrEmpty(this string str)
         {
             return str == null | str == string.Empty;
@@ -23,6 +25,21 @@ namespace TFSUtils
             return str.ToString();
         }
 
+        //
+        public static bool AllSelected(this CheckedListBox checkedListBox1, bool toSelect)
+        {
+            if (checkedListBox1 == null)
+                return false;
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, toSelect);
+            }
+
+            return true;
+        }
+
+
+        //app.config
         public static void SaveConfig(string key, string appValue)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);

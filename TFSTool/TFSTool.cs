@@ -3,6 +3,7 @@ using Microsoft.Office.Interop.Outlook;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -38,6 +39,7 @@ namespace TFSTool
 
             dateTimePickerEnd.Value = DateTime.Now;
 
+            txtOwners.Text = Utils.GetConfig("owners");
             txtSprintNum.Text = Utils.GetConfig("sprintnum");
             txtFromName.Text = Utils.GetConfig("fromname");
             textSubject.Text = $"VKC2 released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
@@ -70,7 +72,7 @@ namespace TFSTool
 
                 if (tlpText.Visible)
                 {
-                    richTextBox1.Text = webBrowserShow.Document.ActiveElement.InnerHtml.ToStringEx(); 
+                    richTextBox1.Text = webBrowserShow.Document.ActiveElement.InnerHtml.ToStringEx();
                 }
                 else
                 {
@@ -149,9 +151,25 @@ namespace TFSTool
                 Utils.SaveConfig("fromname", txtFromName.Text);
             };
 
-           
+            txtOwners.KeyPress += delegate (object sender, KeyPressEventArgs e)
+            {
+                if (e.KeyChar != (char)Keys.Return)
+                    return;
+
+                Utils.SaveConfig("owners", txtOwners.Text);
+            };
+
+            chkAllStatus.CheckedChanged+= delegate
+            {
+                checkedListStatus.AllSelected(chkAllStatus.Checked);
+            };
+
+            chkAllType.CheckedChanged += delegate
+            {
+                checkedListType.AllSelected(chkAllType.Checked);
+            };
         }
-         
+
 
         private bool SendEmail()
         {
@@ -248,16 +266,13 @@ namespace TFSTool
         {
             string username = Utils.GetConfig("username");
             string pass = Utils.GetConfig("password");
-            if (username.IsNullOrEmpty() || pass.IsNullOrEmpty())
-            {
-                return false;
-            }
             string tfsQuery = Utils.GetConfig("tfsquery");
             string tfsURL = Utils.GetConfig("tfsurl");
+            if (username.IsNullOrEmpty() || pass.IsNullOrEmpty() || tfsQuery.IsNullOrEmpty() || tfsURL.IsNullOrEmpty())
+            {
+                throw new System.Exception("Please set tfs credential in app.config.");
+            }
 
-
-            tFSOperation.UserName = username;
-            tFSOperation.Password = pass;
             tFSOperation.QuertStr = tfsQuery;
             tFSOperation.URL = tfsURL;
 
@@ -293,7 +308,7 @@ namespace TFSTool
 
             body.AppendLine(string.Format("<HTML><BODY contentEditable='true'><p style='margin: 0 0;color:#2F5597;'>Hi All,<o:p></o:p></p><br>" +
                 "<p style='margin: 0 0;color:#2F5597;'><b><span style='background:yellow;mso-highlight:yellow'>Sprint {0}</span></b></p><br>", sprintNum));
-            body.AppendLine(string.Format("<p style='margin: 0 0;color:#2F5597;'>VKC2 released @ ~{0} with script run. &nbsp; &nbsp;<o:p></o:p></p>", 
+            body.AppendLine(string.Format("<p style='margin: 0 0;color:#2F5597;'>VKC2 released @ ~{0} with script run. &nbsp; &nbsp;<o:p></o:p></p>",
                 DateTime.Now.ToString("HH:mm MMMM dd")));
             body.AppendLine(string.Format("<ul style='margin-top:0in' type=disc><li style='margin: 0 0;color:#2F5597;'>vkc2.3.3-{0}.sql<o:p></o:p></li></ul><br>" +
                 "<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>", DateTime.Now.AddDays(-1).ToString("yyyyMMdd")));
@@ -341,6 +356,7 @@ namespace TFSTool
             if (!status.IsNullOrEmpty())
                 isType = true;
 
+            string[] owners = txtOwners.Text.Split(new char[] { ',' });
 
             foreach (VKWorkItem wi in vKWorkItems)
             {
@@ -358,11 +374,19 @@ namespace TFSTool
                 if (!type.Contains("Test Case") && wi.Title.ToUpper().StartsWith("TEST"))
                     continue;
 
-                vKWorkItemsRtn.Add(wi);
+                if (owners.Length > 0) {
+                    foreach (var owner in owners)
+                        if (wi.AssignedTo.ToStringEx().Contains(owner))
+                            vKWorkItemsRtn.Add(wi);
+                }
+                else {
+                    vKWorkItemsRtn.Add(wi);
+                }
             }
 
             return vKWorkItemsRtn;
         }
- 
+
+        
     }
 }

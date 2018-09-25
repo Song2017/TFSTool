@@ -61,6 +61,10 @@
             this.checkedListType = new System.Windows.Forms.CheckedListBox();
             this.txtFromName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtOwners = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.chkAllType = new System.Windows.Forms.CheckBox();
+            this.chkAllStatus = new System.Windows.Forms.CheckBox();
             this.tlpBrowser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tlpText.SuspendLayout();
@@ -277,10 +281,36 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
+            // txtOwners
+            // 
+            resources.ApplyResources(this.txtOwners, "txtOwners");
+            this.txtOwners.Name = "txtOwners";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // chkAllType
+            // 
+            resources.ApplyResources(this.chkAllType, "chkAllType");
+            this.chkAllType.Name = "chkAllType";
+            this.chkAllType.UseVisualStyleBackColor = true;
+            // 
+            // chkAllStatus
+            // 
+            resources.ApplyResources(this.chkAllStatus, "chkAllStatus");
+            this.chkAllStatus.Name = "chkAllStatus";
+            this.chkAllStatus.UseVisualStyleBackColor = true;
+            // 
             // TFSTool
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkAllStatus);
+            this.Controls.Add(this.chkAllType);
+            this.Controls.Add(this.txtOwners);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtFromName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkedListType);
@@ -348,5 +378,9 @@
         private System.Windows.Forms.CheckedListBox checkedListType;
         private System.Windows.Forms.TextBox txtFromName;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtOwners;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chkAllType;
+        private System.Windows.Forms.CheckBox chkAllStatus;
     }
 }

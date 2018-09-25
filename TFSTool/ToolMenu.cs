@@ -36,9 +36,9 @@ namespace TFSTool
             this.textSubject.Text = Utils.GetConfig("subject", "");
 
             if (textTo.Text.ToStringEx().IsNullOrEmpty())
-                textTo.Text = "Bensong2017@hotmail.com";
+                textTo.Text = "your email";
             if (textCC.Text.ToStringEx().IsNullOrEmpty())
-                textCC.Text = "Bensong2017@hotmail.com";
+                textCC.Text = "your email";
             if (txtUrl.Text.ToStringEx().IsNullOrEmpty())
                 txtUrl.Text = "http://ogmcshyaptf01.logon.ds.ge.com:8080/tfs/DefaultCollection";
             if (txtQuery.Text.ToStringEx().IsNullOrEmpty())
