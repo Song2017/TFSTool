@@ -40,6 +40,8 @@ namespace TFSTool
             txtSprintNum.Text = Utils.GetConfig("sprintnum");
             textSubject.Text = $"{Utils.GetConfig("proname")} released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
             tlpText.Visible = false;
+            txtOwners.Text = Utils.GetConfig("owners");
+
 
             checkedListStatus.SetItemChecked(2, true);
             checkedListStatus.SetItemChecked(3, true);
@@ -51,6 +53,7 @@ namespace TFSTool
 
         private void InitMethod()
         {
+            //menu
             this.ConfigToolStripMenuItem.Click += delegate (object sender, EventArgs e)
             {
                 if (this.SetCredentials())
@@ -101,6 +104,7 @@ namespace TFSTool
                 MessageBox.Show(this, "More details please find in ...", "About", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             };
 
+            //Button
             buttonSend.Click += delegate (object sender, EventArgs e)
             {
                 if (textTo.Text.IsNullOrEmpty())
@@ -118,13 +122,11 @@ namespace TFSTool
                 }
                 MessageBox.Show(this, "Error: Email send with an error, please check log.", "SendEmail", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             };
-
             buttonReceive.Click += delegate
             {
                 SetUICredentials();
                 PrepareVKWorkItems();
             };
-
             buttonSaveLocal.Click += delegate
             {
                 if (_vKWorkItemsCache == null || _vKWorkItemsCache.Count <= 0)
@@ -140,6 +142,7 @@ namespace TFSTool
 
             };
 
+            //Text: Enter save
             txtSprintNum.KeyPress += delegate (object sender, KeyPressEventArgs e)
             {
                 if (e.KeyChar != (char)Keys.Return)
@@ -147,7 +150,24 @@ namespace TFSTool
 
                 Utils.SaveConfig("sprintnum", txtSprintNum.Text);
             };
-           
+            txtOwners.KeyPress += delegate (object sender, KeyPressEventArgs e)
+            {
+                if (e.KeyChar != (char)Keys.Return)
+                    return;
+
+                Utils.SaveConfig("owners", txtOwners.Text);
+            };
+
+            //check
+            chkStatus.CheckedChanged += delegate
+            {
+                checkedListStatus.AllSelected(chkStatus.Checked);
+            };
+            chkType.CheckedChanged += delegate
+            {
+                checkedListType.AllSelected(chkType.Checked);
+            };
+
         }
          
 
@@ -290,16 +310,16 @@ namespace TFSTool
             body.AppendLine("<tr style='height:17.15pt'>");
             body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
             body.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
-            body.Append(string.Format("<td width=760 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
             body.Append(string.Format("<td width=760 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
+            body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
             body.AppendLine("</tr>");
             foreach (VKWorkItem wi in vKWorkItemsRtn)
             {
                 body.Append("<tr style='height:17.15pt'>");
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.WorkItemType.Replace("Product Backlog Item", "PBI")));
-                body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.AssignedTo));
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ID));
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Title));
+                body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.AssignedTo));
                 body.AppendLine("</tr>");
             }
             body.Append("</table>");
@@ -313,23 +333,7 @@ namespace TFSTool
             List<VKWorkItem> vKWorkItemsRtn = new List<VKWorkItem>();
             if (vKWorkItems == null || dateTime == null)
                 return vKWorkItems;
-
-            string status = string.Empty;
-            foreach (var item in checkedListStatus.CheckedItems)
-                status += item.ToStringEx() + ",";
-
-            bool isFileterStatus = false;
-            if (!status.IsNullOrEmpty())
-                isFileterStatus = true;
-
-            string type = string.Empty;
-            foreach (var item in checkedListType.CheckedItems)
-                type += item.ToStringEx() + ",";
-
-            bool isType = false;
-            if (!type.IsNullOrEmpty())
-                isType = true;
-
+            string[] owners = txtOwners.Text.Split(new char[] { ',' });
 
             foreach (VKWorkItem wi in vKWorkItems)
             {
@@ -338,16 +342,22 @@ namespace TFSTool
                 if (dateTimeEnd != null && (wi.ChangedDate.DayOfYear > dateTimeEnd.DayOfYear))
                     continue;
 
-                if (isFileterStatus && !status.Contains(wi.State))
+                if (checkedListStatus.HasSelected(out string status) && !status.Contains(wi.State))
                     continue;
 
-                if (isType && !type.Contains(wi.WorkItemType))
+                if (checkedListType.HasSelected(out string type) && !type.Contains(wi.WorkItemType))
                     continue;
 
-                if (!type.Contains("Test Case") && wi.Title.ToUpper().StartsWith("TEST"))
-                    continue;
-
-                vKWorkItemsRtn.Add(wi);
+                if (owners.Length > 0)
+                {
+                    foreach (var owner in owners)
+                        if (wi.AssignedTo.ToStringEx().Contains(owner))
+                            vKWorkItemsRtn.Add(wi);
+                }
+                else
+                {
+                    vKWorkItemsRtn.Add(wi);
+                }
             }
 
             return vKWorkItemsRtn;

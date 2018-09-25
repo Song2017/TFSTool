@@ -62,6 +62,8 @@
             this.checkedListType = new System.Windows.Forms.CheckedListBox();
             this.txtOwners = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.chkStatus = new System.Windows.Forms.CheckBox();
+            this.chkType = new System.Windows.Forms.CheckBox();
             this.tlpBrowser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tlpText.SuspendLayout();
@@ -284,10 +286,24 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
+            // chkStatus
+            // 
+            resources.ApplyResources(this.chkStatus, "chkStatus");
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.UseVisualStyleBackColor = true;
+            // 
+            // chkType
+            // 
+            resources.ApplyResources(this.chkType, "chkType");
+            this.chkType.Name = "chkType";
+            this.chkType.UseVisualStyleBackColor = true;
+            // 
             // TFSTool
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkType);
+            this.Controls.Add(this.chkStatus);
             this.Controls.Add(this.txtOwners);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkedListType);
@@ -356,5 +372,7 @@
         private System.Windows.Forms.ToolStripMenuItem configEmailToolStripMenuItem;
         private System.Windows.Forms.TextBox txtOwners;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chkStatus;
+        private System.Windows.Forms.CheckBox chkType;
     }
 }

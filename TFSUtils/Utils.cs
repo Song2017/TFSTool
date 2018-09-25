@@ -4,11 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 
 namespace TFSUtils
 {
     public static class Utils
     {
+        //string
         public static bool IsNullOrEmpty(this string str)
         {
             return str == null | str == string.Empty;
@@ -23,6 +25,36 @@ namespace TFSUtils
             return str.ToString();
         }
 
+
+        //CheckedListBox
+        public static bool AllSelected(this CheckedListBox checkedListBox1, bool toSelect)
+        {
+            if (checkedListBox1 == null)
+                return false;
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, toSelect);
+            }
+
+            return true;
+        }
+
+        public static bool HasSelected(this CheckedListBox checkedListBox, out string valueSelected)
+        {
+            bool hasSelected = false;
+
+            valueSelected = string.Empty;
+            foreach (var item in checkedListBox.CheckedItems)
+                valueSelected += item.ToStringEx() + ",";
+
+            if (!valueSelected.IsNullOrEmpty())
+                hasSelected = true;
+
+            return hasSelected;
+        }
+
+
+        //app.config
         public static void SaveConfig(string key, string appValue)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -42,10 +74,10 @@ namespace TFSUtils
         {
             string strConfigRtn = string.Empty;
             AppSettingsSection ass = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).AppSettings;
-            if (ass == null || ass.Settings == null || ass.Settings.Count == 0 || ass.Settings[key] == null)
+            if (ass == null || ass.Settings == null || ass.Settings.Count == 0 || ass.Settings[key] == null || ass.Settings[key].Value == null)
             {
                 Utils.SaveConfig(key, defaultValue);
-                return string.Empty;
+                return defaultValue;
             }
             strConfigRtn = ass.Settings[key].Value.ToString();
             if (isDecrypt)
