@@ -243,22 +243,17 @@ namespace TFSTool
         }
 
         private bool SetTFSInstance(ref TFSOperation tFSOperation)
-        {
-            string username = Utils.GetConfig("username");
-            string pass = Utils.GetConfig("password");
-            if (username.IsNullOrEmpty() || pass.IsNullOrEmpty())
-            {
-                return false;
-            }
+        { 
             string tfsQuery = Utils.GetConfig("tfsquery");
             string tfsURL = Utils.GetConfig("tfsurl");
+            if (Utils.GetConfig("username").IsNullOrEmpty() || Utils.GetConfig("password").IsNullOrEmpty()
+                || tfsQuery.IsNullOrEmpty() || tfsURL.IsNullOrEmpty())
+            {
+                throw new System.Exception("Please set tfs credential in app.config.");
+            }
 
-
-            tFSOperation.UserName = username;
-            tFSOperation.Password = pass;
             tFSOperation.QuertStr = tfsQuery;
             tFSOperation.URL = tfsURL;
-
             return true;
         }
 
@@ -289,7 +284,7 @@ namespace TFSTool
         {
             StringBuilder body = new StringBuilder();
 
-            body.AppendLine(string.Format("<HTML><BODY contentEditable='true'> {0}", Utils.GetConfig("emailheader"));
+            body.AppendLine($"<HTML><BODY contentEditable='true'> {Utils.GetConfig("emailheader")}");
             body.AppendLine(  $"<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>");
             body.Append("<table class='MsoNormalTable' width=1393 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
             body.AppendLine("<tr style='height:17.15pt'>");
