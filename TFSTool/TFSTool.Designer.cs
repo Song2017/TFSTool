@@ -44,6 +44,7 @@
             this.ConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,10 +60,8 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.checkedListStatus = new System.Windows.Forms.CheckedListBox();
             this.checkedListType = new System.Windows.Forms.CheckedListBox();
-            this.txtFromName = new System.Windows.Forms.TextBox();
+            this.txtOwners = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textPro = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.tlpBrowser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tlpText.SuspendLayout();
@@ -133,7 +132,8 @@
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ConfigToolStripMenuItem,
             this.loadToolStripMenuItem,
-            this.editEmailToolStripMenuItem});
+            this.editEmailToolStripMenuItem,
+            this.configEmailToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             // 
@@ -151,6 +151,11 @@
             // 
             this.editEmailToolStripMenuItem.Name = "editEmailToolStripMenuItem";
             resources.ApplyResources(this.editEmailToolStripMenuItem, "editEmailToolStripMenuItem");
+            // 
+            // configEmailToolStripMenuItem
+            // 
+            this.configEmailToolStripMenuItem.Name = "configEmailToolStripMenuItem";
+            resources.ApplyResources(this.configEmailToolStripMenuItem, "configEmailToolStripMenuItem");
             // 
             // helpToolStripMenuItem
             // 
@@ -269,33 +274,21 @@
             resources.ApplyResources(this.checkedListType, "checkedListType");
             this.checkedListType.Name = "checkedListType";
             // 
-            // txtFromName
+            // txtOwners
             // 
-            resources.ApplyResources(this.txtFromName, "txtFromName");
-            this.txtFromName.Name = "txtFromName";
+            resources.ApplyResources(this.txtOwners, "txtOwners");
+            this.txtOwners.Name = "txtOwners";
             // 
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // textPro
-            // 
-            resources.ApplyResources(this.textPro, "textPro");
-            this.textPro.Name = "textPro";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
             // TFSTool
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textPro);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtFromName);
+            this.Controls.Add(this.txtOwners);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkedListType);
             this.Controls.Add(this.checkedListStatus);
@@ -360,9 +353,8 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.CheckedListBox checkedListStatus;
         private System.Windows.Forms.CheckedListBox checkedListType;
-        private System.Windows.Forms.TextBox txtFromName;
+        private System.Windows.Forms.ToolStripMenuItem configEmailToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtOwners;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textPro;
-        private System.Windows.Forms.Label label6;
     }
 }

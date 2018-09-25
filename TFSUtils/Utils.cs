@@ -131,6 +131,6 @@ namespace TFSUtils
 
         private const int DERIVATIONITERATIONS = 1000;
 
-        private const string ENCRYPTIONKEY = "ENCRYPTIONKEYSONG";
+        private const string ENCRYPTIONKEY = "ENCRYPTIONKEY";
     }
 }

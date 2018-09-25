@@ -98,6 +98,12 @@
     <Compile Include="TFSTool.Designer.cs">
       <DependentUpon>TFSTool.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmailContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailContent.Designer.cs">
+      <DependentUpon>EmailContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </Compile>
     <EmbeddedResource Include="TFSTool.resx">
       <DependentUpon>TFSTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailContent.resx">
+      <DependentUpon>EmailContent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolMenu.resx">
       <DependentUpon>ToolMenu.cs</DependentUpon>

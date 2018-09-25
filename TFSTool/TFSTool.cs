@@ -35,15 +35,10 @@ namespace TFSTool
                 dateTimePicker.Value = DateTime.Now.AddDays(-3);
             else
                 dateTimePicker.Value = DateTime.Now.AddDays(-1);
-
             dateTimePickerEnd.Value = DateTime.Now;
 
             txtSprintNum.Text = Utils.GetConfig("sprintnum");
-            txtFromName.Text = Utils.GetConfig("fromname");
-            textPro.Text = Utils.GetConfig("proname");
-
-            textSubject.Text = $"{textPro.Text} released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
-
+            textSubject.Text = $"{Utils.GetConfig("proname")} released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
             tlpText.Visible = false;
 
             checkedListStatus.SetItemChecked(2, true);
@@ -79,6 +74,16 @@ namespace TFSTool
                     webBrowserShow.DocumentText = $"<HTML><BODY contentEditable='true'>{richTextBox1.Text.ToStringEx()}</BODY></HTML>";
                 }
             };
+            this.configEmailToolStripMenuItem.Click += delegate {
+                using (EmailContent dialog = new EmailContent())
+                {
+                    if (dialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show(this, "Email content configure does not saved.", "Tip", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
+                }
+            };
+
             this.tipsToolStripMenuItem.Click += delegate (object sender, EventArgs e)
             {
                 StringBuilder sb = new StringBuilder();
@@ -93,7 +98,7 @@ namespace TFSTool
             };
             this.aboutToolStripMenuItem.Click += delegate
             {
-                MessageBox.Show(this, "this is about...", "About", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show(this, "More details please find in ...", "About", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             };
 
             buttonSend.Click += delegate (object sender, EventArgs e)
@@ -142,23 +147,7 @@ namespace TFSTool
 
                 Utils.SaveConfig("sprintnum", txtSprintNum.Text);
             };
-
-            txtFromName.KeyPress += delegate (object sender, KeyPressEventArgs e)
-            {
-                if (e.KeyChar != (char)Keys.Return)
-                    return;
-
-                Utils.SaveConfig("fromname", txtFromName.Text);
-            };
-
-            textPro.KeyPress += delegate (object sender, KeyPressEventArgs e)
-            {
-                if (e.KeyChar != (char)Keys.Return)
-                    return;
-
-                Utils.SaveConfig("proname", textPro.Text);
-            };
-
+           
         }
          
 
@@ -300,30 +289,26 @@ namespace TFSTool
         {
             StringBuilder body = new StringBuilder();
 
-            body.AppendLine(string.Format("<HTML><BODY contentEditable='true'><p style='margin: 0 0;color:#2F5597;'>Hi All,<o:p></o:p></p><br>" +
-                "<p style='margin: 0 0;color:#2F5597;'><b><span style='background:yellow;mso-highlight:yellow'>Sprint {0}</span></b></p><br>", sprintNum));
-            body.AppendLine($"<p style='margin: 0 0;color:#2F5597;'>{textPro.Text} released @ ~{DateTime.Now.ToString("HH:mm MMMM dd")} with script run. &nbsp; &nbsp;<o:p></o:p></p>");
-            body.AppendLine($"<ul style='margin-top:0in' type=disc>" +
-                $"<li style='margin: 0 0;color:#2F5597;'>{textPro.Text.ToStringEx().ToLower()}.3.3-{DateTime.Now.AddDays(-1).ToString("yyyyMMdd")}.sql<o:p></o:p></li></ul><br>" +
-                $"<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>");
+            body.AppendLine(string.Format("<HTML><BODY contentEditable='true'> {0}", Utils.GetConfig("emailheader"));
+            body.AppendLine(  $"<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>");
             body.Append("<table class='MsoNormalTable' width=1393 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
             body.AppendLine("<tr style='height:17.15pt'>");
             body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
             body.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
+            body.Append(string.Format("<td width=760 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
             body.Append(string.Format("<td width=760 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
             body.AppendLine("</tr>");
             foreach (VKWorkItem wi in vKWorkItemsRtn)
             {
                 body.Append("<tr style='height:17.15pt'>");
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.WorkItemType.Replace("Product Backlog Item", "PBI")));
+                body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.AssignedTo));
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ID));
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Title));
                 body.AppendLine("</tr>");
             }
             body.Append("</table>");
-            body.Append("<p style='margin: 0 0;color:#2F5597;'>&nbsp;<o:p></o:p></p>" +
-                "<p style='margin: 0 0;color:#2F5597;'>Thanks.<o:p></o:p></p><p style='margin: 0 0;color:#2F5597;'><br>Regards,<o:p></o:p></p>" +
-                $"<p style='margin: 0 0;color:#2F5597;'>{txtFromName.Text.ToStringEx()}<o:p></o:p></p></BODY></HTML>");
+            body.Append($"{Utils.GetConfig("emailfooter").ToStringEx()}</BODY></HTML>");
 
             return body.ToStringEx();
         }
@@ -347,7 +332,7 @@ namespace TFSTool
                 type += item.ToStringEx() + ",";
 
             bool isType = false;
-            if (!status.IsNullOrEmpty())
+            if (!type.IsNullOrEmpty())
                 isType = true;
 
 
