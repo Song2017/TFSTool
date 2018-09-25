@@ -317,6 +317,7 @@ namespace TFSTool
             body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
             body.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
             body.Append(string.Format("<td width=760 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
+            body.Append(string.Format("<td width=760 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
             body.AppendLine("</tr>");
             foreach (VKWorkItem wi in vKWorkItemsRtn)
             {
@@ -324,6 +325,7 @@ namespace TFSTool
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.WorkItemType.Replace("Product Backlog Item", "PBI")));
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ID));
                 body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Title));
+                body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.AssignedTo));
                 body.AppendLine("</tr>");
             }
             body.Append("</table>");
@@ -353,7 +355,7 @@ namespace TFSTool
                 type += item.ToStringEx() + ",";
 
             bool isType = false;
-            if (!status.IsNullOrEmpty())
+            if (!type.IsNullOrEmpty())
                 isType = true;
 
             string[] owners = txtOwners.Text.Split(new char[] { ',' });
