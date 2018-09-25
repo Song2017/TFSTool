@@ -274,11 +274,7 @@ namespace TFSTool
                     {
                         base._Log.Error("Items Handle error:" + e.Message);
                     }
-
-                }
-                catch {
-                    MessageBox.Show(this, "Please check error info in logs folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                } 
                 finally
                 {
                     this.EndWait();
