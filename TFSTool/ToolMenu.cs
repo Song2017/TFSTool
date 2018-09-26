@@ -33,6 +33,8 @@ namespace TFSTool
             this.textPassWord.Text = Utils.GetConfig("password", "");
             this.textTo.Text = Utils.GetConfig("to", "");
             this.textCC.Text = Utils.GetConfig("cc", "");
+            this.txtUrl.Text = Utils.GetConfig("tfsurl", "");
+            this.txtQuery.Text = Utils.GetConfig("tfsquery", "");
             this.textSubject.Text = Utils.GetConfig("subject", "");
 
             if (textTo.Text.ToStringEx().IsNullOrEmpty())
@@ -43,7 +45,8 @@ namespace TFSTool
                 txtUrl.Text = "http://address:8080/tfs/DefaultCollection";
             if (txtQuery.Text.ToStringEx().IsNullOrEmpty())
                 txtQuery.Text = $"SELECT * FROM WorkItems WHERE  [System.TeamProject] = '{Utils.GetConfig("proname") ?? "project name"}'";
-            textSubject.Text = string.Format("Subject @{0}", DateTime.Now.ToString("yyyy/MM/dd"));
+            if (textSubject.Text.ToStringEx().IsNullOrEmpty())
+                textSubject.Text = string.Format("Subject ~@{0}", DateTime.Now.ToString("yyyy/MM/dd"));
         }
 
         private void InitMethod()
