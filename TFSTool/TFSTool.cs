@@ -40,12 +40,10 @@ namespace TFSTool
             tlpText.Visible = false;
             txtOwners.Text = Utils.GetConfig(AppConstants.OWNERS);
 
-
             checkedListStatus.SetItemChecked(2, true);
             checkedListStatus.SetItemChecked(3, true);
             checkedListType.SetItemChecked(0, true);
             checkedListType.SetItemChecked(2, true);
-            checkedListType.SetItemChecked(4, true);
         }
 
 
@@ -89,12 +87,12 @@ namespace TFSTool
             {
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("1. Install Outlook to local machine: avoid local email server prohibit ");
-                sb.AppendLine("2. Set Credentials in Menu ");
-                sb.AppendLine("3. Select Date ");
-                sb.AppendLine("4. Retrive tfs data via button ");
-                sb.AppendLine("5. Edit Email content in Menu ");
+                sb.AppendLine("2. Set Credentials/Email Content in Menu ");
+                sb.AppendLine("3. Config filter condition: Date, Type, Status...");
+                sb.AppendLine("4. Retrive TFS data via button ");
+                sb.AppendLine("5. Edit Email content and Reload via Menu ");
                 sb.AppendLine("6. Send Email via button");
-
+                sb.AppendLine("7. Localize TFS Data via button");
                 MessageBox.Show(this, sb.ToStringEx(), "Tips", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             };
             this.aboutToolStripMenuItem.Click += delegate
@@ -326,12 +324,12 @@ namespace TFSTool
 
             body.AppendLine($"<HTML><BODY contentEditable='true'> {Utils.GetConfig("emailheader")}");
             body.AppendLine(  $"<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>");
-            body.Append("<table class='MsoNormalTable' width=1393 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
+            body.Append("<table class='MsoNormalTable' width=1200 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
             body.AppendLine("<tr style='height:17.15pt'>");
-            body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
+            body.Append(string.Format("<td width=150 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
             body.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
-            body.Append(string.Format("<td width=760 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
-            body.Append(string.Format("<td width=130 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
+            body.Append(string.Format("<td width=800 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
+            body.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
             body.AppendLine("</tr>");
             foreach (VKWorkItem wi in vKWorkItemsRtn)
             {

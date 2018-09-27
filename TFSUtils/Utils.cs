@@ -92,12 +92,12 @@ namespace TFSUtils
             byte[] ivStringBytes = Utils.Generate256BitsOfRandomEntropy();
             byte[] sourceBytes = Encoding.UTF8.GetBytes(source);
             string result;
-            using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(ENCRYPTIONKEY, saltStringBytes, 1000))
+            using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(CryptoConstants.ENCRYPTIONKEY, saltStringBytes, CryptoConstants.DERIVATIONITERATIONS))
             {
-                byte[] keyBytes = password.GetBytes(32);
+                byte[] keyBytes = password.GetBytes(CryptoConstants.PASSWORDSIZE);
                 using (RijndaelManaged symmetricKey = new RijndaelManaged())
                 {
-                    symmetricKey.BlockSize = 256;
+                    symmetricKey.BlockSize = CryptoConstants.BLOCKSIZE;
                     symmetricKey.Mode = CipherMode.CBC;
                     symmetricKey.Padding = PaddingMode.PKCS7;
                     using (ICryptoTransform encryptor = symmetricKey.CreateEncryptor(keyBytes, ivStringBytes))
@@ -123,13 +123,13 @@ namespace TFSUtils
             byte[] saltStringBytes = cipherTextBytesWithSaltAndIv.Take(32).ToArray<byte>();
             byte[] ivStringBytes = cipherTextBytesWithSaltAndIv.Skip(32).Take(32).ToArray<byte>();
             byte[] cipherTextBytes = cipherTextBytesWithSaltAndIv.Skip(64).Take(cipherTextBytesWithSaltAndIv.Length - 64).ToArray<byte>();
-            string @string;
-            using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(ENCRYPTIONKEY, saltStringBytes, 1000))
+            string sourcePass;
+            using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(CryptoConstants.ENCRYPTIONKEY, saltStringBytes, CryptoConstants.DERIVATIONITERATIONS))
             {
-                byte[] keyBytes = password.GetBytes(32);
+                byte[] keyBytes = password.GetBytes(CryptoConstants.PASSWORDSIZE);
                 using (RijndaelManaged symmetricKey = new RijndaelManaged())
                 {
-                    symmetricKey.BlockSize = 256;
+                    symmetricKey.BlockSize = CryptoConstants.BLOCKSIZE;
                     symmetricKey.Mode = CipherMode.CBC;
                     symmetricKey.Padding = PaddingMode.PKCS7;
                     using (ICryptoTransform decryptor = symmetricKey.CreateDecryptor(keyBytes, ivStringBytes))
@@ -140,18 +140,18 @@ namespace TFSUtils
                             {
                                 byte[] plainTextBytes = new byte[cipherTextBytes.Length];
                                 int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
-                                @string = Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                                sourcePass = Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
                             }
                         }
                     }
                 }
             }
-            return @string;
+            return sourcePass;
         }
 
         public static byte[] Generate256BitsOfRandomEntropy()
         {
-            byte[] randomBytes = new byte[32];
+            byte[] randomBytes = new byte[CryptoConstants.PASSWORDSIZE];
             using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
                 rng.GetBytes(randomBytes);
@@ -159,10 +159,5 @@ namespace TFSUtils
             return randomBytes;
         }
 
-        private const int KEYSIZE = 256;
-
-        private const int DERIVATIONITERATIONS = 1000;
-
-        private const string ENCRYPTIONKEY = "ENCRYPTIONKEY";
     }
 }

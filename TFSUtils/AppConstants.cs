@@ -14,4 +14,11 @@ namespace TFSUtils
         public const string EMAIL_CC = "cc";
         public const string EMAIL_SUBJECT = "subject"; 
     }
+
+    public struct CryptoConstants {
+        public const int PASSWORDSIZE = 32;
+        public const int BLOCKSIZE = 256;
+        public const int DERIVATIONITERATIONS = 1000;
+        public const string ENCRYPTIONKEY = "ENCRYPTIONKEY"; 
+    }
 }

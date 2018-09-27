@@ -178,4 +178,7 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)\bins" "$(TargetDir)"  /s /e /h /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
