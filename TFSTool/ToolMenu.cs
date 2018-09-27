@@ -29,13 +29,13 @@ namespace TFSTool
         {
             this.linkLabelCredentials.Links.Add(0, 40, this._TFSSecurityURL);
             this.textPassWord.PasswordChar = '*';
-            this.textUserName.Text = Utils.GetConfig("username", "");
-            this.textPassWord.Text = Utils.GetConfig("password", "");
-            this.textTo.Text = Utils.GetConfig("to", "");
-            this.textCC.Text = Utils.GetConfig("cc", "");
-            this.txtUrl.Text = Utils.GetConfig("tfsurl", "");
-            this.txtQuery.Text = Utils.GetConfig("tfsquery", "");
-            this.textSubject.Text = Utils.GetConfig("subject", "");
+            this.textUserName.Text = Utils.GetConfig(AppConstants.TFS_USERNAME, "");
+            this.textPassWord.Text = Utils.GetConfig(AppConstants.TFS_PASSWORD, "");
+            this.textTo.Text = Utils.GetConfig(AppConstants.EMAIL_TO, "");
+            this.textCC.Text = Utils.GetConfig(AppConstants.EMAIL_CC, "");
+            this.txtUrl.Text = Utils.GetConfig(AppConstants.TFSURL, "");
+            this.txtQuery.Text = Utils.GetConfig(AppConstants.TFSQUERY, "");
+            this.textSubject.Text = Utils.GetConfig(AppConstants.EMAIL_SUBJECT, "");
 
             if (textTo.Text.ToStringEx().IsNullOrEmpty())
                 textTo.Text = "your email";
@@ -44,7 +44,7 @@ namespace TFSTool
             if (txtUrl.Text.ToStringEx().IsNullOrEmpty())
                 txtUrl.Text = "http://address:8080/tfs/DefaultCollection";
             if (txtQuery.Text.ToStringEx().IsNullOrEmpty())
-                txtQuery.Text = $"SELECT * FROM WorkItems WHERE  [System.TeamProject] = '{Utils.GetConfig("proname") ?? "project name"}'";
+                txtQuery.Text = $"SELECT * FROM WorkItems WHERE  [System.TeamProject] = '{Utils.GetConfig(AppConstants.PRONAME) ?? "project name"}'";
             if (textSubject.Text.ToStringEx().IsNullOrEmpty())
                 textSubject.Text = string.Format("Subject ~@{0}", DateTime.Now.ToString("yyyy/MM/dd"));
         }
@@ -55,16 +55,16 @@ namespace TFSTool
             {
                 this.TFSCredentials = new List<KeyValuePair<string, string>>
                 {
-                    new KeyValuePair<string, string>("username", this.textUserName.Text.ToStringEx()),
-                    new KeyValuePair<string, string>("password", this.textPassWord.Text.ToStringEx()),
-                    new KeyValuePair<string, string>("tfsurl", this.txtUrl.Text.ToStringEx()),
-                    new KeyValuePair<string, string>("tfsquery", this.txtQuery.Text.ToStringEx())
+                    new KeyValuePair<string, string>(AppConstants.TFS_USERNAME, this.textUserName.Text.ToStringEx()),
+                    new KeyValuePair<string, string>(AppConstants.TFS_PASSWORD, this.textPassWord.Text.ToStringEx()),
+                    new KeyValuePair<string, string>(AppConstants.TFSURL, this.txtUrl.Text.ToStringEx()),
+                    new KeyValuePair<string, string>(AppConstants.TFSQUERY, this.txtQuery.Text.ToStringEx())
                 };
                 this.EmailParameters = new List<KeyValuePair<string, string>>
                 {
-                    new KeyValuePair<string, string>("to", this.textTo.Text.ToStringEx()),
-                    new KeyValuePair<string, string>("cc", this.textCC.Text.ToStringEx()),
-                    new KeyValuePair<string, string>("subject", this.textSubject.Text.ToStringEx())
+                    new KeyValuePair<string, string>(AppConstants.EMAIL_TO, this.textTo.Text.ToStringEx()),
+                    new KeyValuePair<string, string>(AppConstants.EMAIL_CC, this.textCC.Text.ToStringEx()),
+                    new KeyValuePair<string, string>(AppConstants.EMAIL_SUBJECT, this.textSubject.Text.ToStringEx())
                 };
                 base.DialogResult = DialogResult.OK;
             };

@@ -27,10 +27,10 @@ namespace TFSTool
         private void InitUI()
         {
             txtFromName.Text = Utils.GetConfig("fromname");
-            txtPro.Text = Utils.GetConfig("proname");
+            txtPro.Text = Utils.GetConfig(AppConstants.PRONAME);
 
             string emailHeader = $"<P style='COLOR: #2f5597; MARGIN: 0px'>Hi All,<O:P></O:P></P><BR>" +
-                $"<P style='COLOR: #2f5597; MARGIN: 0px'><B><SPAN style='BACKGROUND: yellow; mso-highlight: yellow'>Sprint {Utils.GetConfig("sprintnum")}</SPAN></B></P><BR>" +
+                $"<P style='COLOR: #2f5597; MARGIN: 0px'><B><SPAN style='BACKGROUND: yellow; mso-highlight: yellow'>Sprint {Utils.GetConfig(AppConstants.SPRINTNUM)}</SPAN></B></P><BR>" +
                 $"<P style='COLOR: #2f5597; MARGIN: 0px'>{txtPro.Text.ToStringEx()} released @ ~{DateTime.Now.ToString("HH:mm MMMM dd")} with script run. &nbsp; &nbsp;<O:P></O:P></P><UL style='MARGIN-TOP: 0in' type=disc><LI style='COLOR: #2f5597; MARGIN: 0px'>vkc2.3.3-20180924.sql<O:P></O:P></LI></UL><BR>";
             string emailFooter = $"<p style='margin: 0 0;color:#2F5597;'>&nbsp;<o:p></o:p></p> <p style='margin: 0 0;color:#2F5597;'>Thanks.<o:p></o:p></p><p style='margin: 0 0;color:#2F5597;'><br>Regards,<o:p></o:p></p>" +
                 $"<p style='margin: 0 0;color:#2F5597;'>{txtFromName.Text.ToStringEx()}<o:p></o:p></p>";
@@ -57,16 +57,16 @@ namespace TFSTool
                     return;
 
                 string emailHeader = $"<P style='COLOR: #2f5597; MARGIN: 0px'>Hi All,<O:P></O:P></P><BR>" +
-                    $"<P style='COLOR: #2f5597; MARGIN: 0px'><B><SPAN style='BACKGROUND: yellow; mso-highlight: yellow'>Sprint {Utils.GetConfig("sprintnum")}</SPAN></B></P><BR>" +
+                    $"<P style='COLOR: #2f5597; MARGIN: 0px'><B><SPAN style='BACKGROUND: yellow; mso-highlight: yellow'>Sprint {Utils.GetConfig(AppConstants.SPRINTNUM)}</SPAN></B></P><BR>" +
                     $"<P style='COLOR: #2f5597; MARGIN: 0px'>{txtPro.Text.ToStringEx()} released @ ~{DateTime.Now.ToString("HH:mm MMMM dd")} with script run. &nbsp; &nbsp;<O:P></O:P></P><UL style='MARGIN-TOP: 0in' type=disc><LI style='COLOR: #2f5597; MARGIN: 0px'>vkc2.3.3-20180924.sql<O:P></O:P></LI></UL><BR>";
                 Utils.SaveConfig("emailheader", emailHeader);
                 richHeader.Text = emailHeader;
-                Utils.SaveConfig("proname", txtPro.Text.ToStringEx());
+                Utils.SaveConfig(AppConstants.PRONAME, txtPro.Text.ToStringEx());
             };
 
             this.buttonOK.Click += delegate (object sender, EventArgs e)
             {
-                Utils.SaveConfig("proname", txtPro.Text);
+                Utils.SaveConfig(AppConstants.PRONAME, txtPro.Text);
                 Utils.SaveConfig("fromname", txtFromName.Text);
                 Utils.SaveConfig("emailheader", richHeader.Text);
                 Utils.SaveConfig("emailfooter", richFooter.Text);

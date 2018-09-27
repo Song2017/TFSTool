@@ -9,12 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSHelper", "Helper\TFSHelp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSUtils", "TFSUtils\TFSUtils.csproj", "{D1E9F1E3-1BB5-4FFC-B44E-A073AC0B1119}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{A6D790EB-35AC-424B-819D-2369EDF1C67D}"
-	ProjectSection(SolutionItems) = preProject
-		Application\Microsoft.WITDataStore32.dll = Application\Microsoft.WITDataStore32.dll
-		Application\Microsoft.WITDataStore64.dll = Application\Microsoft.WITDataStore64.dll
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

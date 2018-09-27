@@ -19,8 +19,8 @@ namespace Helper
 
         public bool ConnectToTFS(string tfsUrl)
         {
-            string username = Utils.GetConfig("username");
-            string password = Utils.GetConfig("password");
+            string username = Utils.GetConfig(AppConstants.TFS_USERNAME);
+            string password = Utils.GetConfig(AppConstants.TFS_PASSWORD);
             if (username.IsNullOrEmpty() || password.IsNullOrEmpty())
             {
                 throw new Exception("Please set tfs credential in app.config.");

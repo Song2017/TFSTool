@@ -35,10 +35,10 @@ namespace TFSTool
                 dateTimePicker.Value = DateTime.Now.AddDays(-1);
             dateTimePickerEnd.Value = DateTime.Now;
 
-            txtSprintNum.Text = Utils.GetConfig("sprintnum");
-            textSubject.Text = $"{Utils.GetConfig("proname")} released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
+            txtSprintNum.Text = Utils.GetConfig(AppConstants.SPRINTNUM);
+            textSubject.Text = $"{Utils.GetConfig(AppConstants.PRONAME)} released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
             tlpText.Visible = false;
-            txtOwners.Text = Utils.GetConfig("owners");
+            txtOwners.Text = Utils.GetConfig(AppConstants.OWNERS);
 
 
             checkedListStatus.SetItemChecked(2, true);
@@ -152,14 +152,14 @@ namespace TFSTool
                 if (e.KeyChar != (char)Keys.Return)
                     return;
 
-                Utils.SaveConfig("sprintnum", txtSprintNum.Text);
+                Utils.SaveConfig(AppConstants.SPRINTNUM, txtSprintNum.Text);
             };
             txtOwners.KeyPress += delegate (object sender, KeyPressEventArgs e)
             {
                 if (e.KeyChar != (char)Keys.Return)
                     return;
 
-                Utils.SaveConfig("owners", txtOwners.Text);
+                Utils.SaveConfig(AppConstants.OWNERS, txtOwners.Text);
             };
 
             //check
@@ -201,9 +201,9 @@ namespace TFSTool
 
         private void SetUICredentials()
         {
-            textTo.Text = Utils.GetConfig("to", "");
-            textCC.Text = Utils.GetConfig("cc", "");
-            textSubject.Text = Utils.GetConfig("subject", "");
+            textTo.Text = Utils.GetConfig(AppConstants.EMAIL_TO, "");
+            textCC.Text = Utils.GetConfig(AppConstants.EMAIL_CC, "");
+            textSubject.Text = Utils.GetConfig(AppConstants.EMAIL_SUBJECT, "");
         }
 
         private bool SetCredentials()
@@ -284,9 +284,9 @@ namespace TFSTool
 
         private bool SetTFSInstance(ref TFSOperation tFSOperation)
         { 
-            string tfsQuery = Utils.GetConfig("tfsquery");
-            string tfsURL = Utils.GetConfig("tfsurl");
-            if (Utils.GetConfig("username").IsNullOrEmpty() || Utils.GetConfig("password").IsNullOrEmpty()
+            string tfsQuery = Utils.GetConfig(AppConstants.TFSQUERY);
+            string tfsURL = Utils.GetConfig(AppConstants.TFSURL);
+            if (Utils.GetConfig(AppConstants.TFS_USERNAME).IsNullOrEmpty() || Utils.GetConfig(AppConstants.TFS_PASSWORD).IsNullOrEmpty()
                 || tfsQuery.IsNullOrEmpty() || tfsURL.IsNullOrEmpty())
             {
                 throw new Exception("Please set tfs credential in app.config.");
