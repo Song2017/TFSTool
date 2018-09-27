@@ -13,3 +13,7 @@ Bridge TFS and Email with custom operation
 7. Localize TFS Data via button
 
 ### Note 
+1. Nlog files in logs folder
+2. Localize files in result folder
+3. After edit email content, MUST Click Edit Email in Menu which will reload email
+4. Send Email via your local email app, like OutLook
