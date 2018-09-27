@@ -6,11 +6,10 @@ Bridge TFS and Email with custom operation
 
 ### Use Steps:
 1. Install Outlook to local machine: avoid local email server prohibit
-2. Set Credentials in Menu
-3. Select Date
-4. Retrive tfs data via button
-5. Edit Email content in Menu
-6. Send Email via button
+2. Set Credentials/Email Content in Menu
+3. Config filter condition: Date, Type, Status...
+4. Retrive TFS data via button 
+5. Edit Email content and Reload via Menu 
+7. Localize TFS Data via button
 
 ### Note 
-1. move dlls in folder Application to output dir: bin/Debug or bin/Release
