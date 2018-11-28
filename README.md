@@ -2,7 +2,7 @@
 ### Winform app
 ### Purpose
 Bridge TFS and Email with custom operation    
-枚举TFS中段时间内更新的元素，按表格型式拼接到邮件中，调用本地Outlook程序发送邮件。
+获取TFS中更新的元素，按表格型式拼接到邮件中，调用本地Outlook程序发送邮件。
 
 ### Use Steps:
 1. Install Outlook to local machine: avoid local email server prohibit
