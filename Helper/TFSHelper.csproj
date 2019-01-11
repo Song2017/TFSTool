@@ -200,6 +200,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangsetItem.cs" />
     <Compile Include="LocalFileFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TFSFunction.cs" />

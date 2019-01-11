@@ -29,18 +29,28 @@ namespace TFSTool
         {
             SetUICredentials();
 
-            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
-                dateTimePicker.Value = DateTime.Now.AddDays(-3);
-            else
-                dateTimePicker.Value = DateTime.Now.AddDays(-1);
+            //if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+            //dateTimePicker.Value = DateTime.Now.AddDays(-3);
+            //else
+
+            dateTimePicker.Value = DateTime.Now;
+
             dateTimePickerEnd.Value = DateTime.Now;
+
+            DateTime dStart = new DateTime(this.dateTimePickerEnd.Value.Year, this.dateTimePickerEnd.Value.Month, this.dateTimePickerEnd.Value.Day, 0, 0, 0);
+
+            DateTime dEnd = new DateTime(this.dateTimePickerEnd.Value.Year, this.dateTimePickerEnd.Value.Month, this.dateTimePickerEnd.Value.Day, 23, 59, 59);
+
+            dateTimePicker.Value = dStart;
+
+            dateTimePickerEnd.Value = dEnd;
 
             txtSprintNum.Text = Utils.GetConfig(AppConstants.SPRINTNUM);
             textSubject.Text = $"{Utils.GetConfig(AppConstants.PRONAME)} released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
             tlpText.Visible = false;
             txtOwners.Text = Utils.GetConfig(AppConstants.OWNERS);
 
-            checkedListStatus.SetItemChecked(2, true);
+            //checkedListStatus.SetItemChecked(10, true);
             checkedListStatus.SetItemChecked(3, true);
             checkedListType.SetItemChecked(0, true);
             checkedListType.SetItemChecked(2, true);
@@ -262,11 +272,23 @@ namespace TFSTool
 
                     try
                     {
+                        body = new StringBuilder();
+
+                        content = new StringBuilder();
+
+                        List<ChangeSetItem> svi3CSI = tFSOperation.GetSVI3ChangeItems();
+                        HandleCSItems(svi3CSI, "SVI II AP/SVI3 DTM");
+
+                        List<ChangeSetItem> vv3CSI = tFSOperation.GetVV3ChangeItems();
+                        HandleCSItems(vv3CSI,"ValVue 3.5");
+
                         List<VKWorkItem> vKWorkItems = tFSOperation.GetVKWorkItems();
                         if (vKWorkItems == null || vKWorkItems.Count <= 0)
                             return;
 
                         HandleWorkItems(vKWorkItems);
+
+                        GetEmailContent();
                     }
                     catch (Exception e)
                     {
@@ -301,6 +323,8 @@ namespace TFSTool
             DateTime dateTime = dateTimePicker.Value;
             DateTime dateTimeEnd = dateTimePickerEnd.Value;
             string sprintNum = txtSprintNum.Text.ToStringEx();
+            if (vKWorkItems == null || vKWorkItems.Count <= 0)
+                return;
 
             for (int i = 0; i < vKWorkItems.Count; i++)
             {
@@ -313,37 +337,99 @@ namespace TFSTool
 
             //set email content
             vKWorkItemsRtn = GetSpecficDateWorkItems(_vKWorkItemsCache, dateTime, dateTimeEnd);
-            string strEmailContent = SetEmailContent(vKWorkItemsRtn, sprintNum);
-            if (!strEmailContent.IsNullOrEmpty())
-                webBrowserShow.DocumentText = strEmailContent.ToStringEx();
+
+
+            SetEmailContent(vKWorkItemsRtn, sprintNum);
+
         }
 
-        private string SetEmailContent(List<VKWorkItem> vKWorkItemsRtn, string sprintNum)
+        private void HandleCSItems(List<ChangeSetItem> csItems, string projectName)
         {
-            StringBuilder body = new StringBuilder();
+            List<ChangeSetItem> csItemsRtn = new List<ChangeSetItem>();
+            DateTime dateTime = dateTimePicker.Value;
+            DateTime dateTimeEnd = dateTimePickerEnd.Value;
+            if (csItems == null || csItems.Count <= 0)
+                return;
 
-            body.AppendLine($"<HTML><BODY contentEditable='true'> {Utils.GetConfig("emailheader")}");
-            body.AppendLine(  $"<p style='margin: 0 0;color:#2F5597;'>Following PBI are finished.<o:p></o:p></p>");
-            body.Append("<table class='MsoNormalTable' width=1200 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
-            body.AppendLine("<tr style='height:17.15pt'>");
-            body.Append(string.Format("<td width=150 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
-            body.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
-            body.Append(string.Format("<td width=800 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
-            body.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
-            body.AppendLine("</tr>");
-            foreach (VKWorkItem wi in vKWorkItemsRtn)
+            for (int i = 0; i < csItems.Count; i++)
             {
-                body.Append("<tr style='height:17.15pt'>");
-                body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.WorkItemType.Replace("Product Backlog Item", "PBI")));
-                body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ID));
-                body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Title));
-                body.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.AssignedTo));
-                body.AppendLine("</tr>");
+                if ( csItems[i].CreationDate >= dateTime && csItems[i].CreationDate <= dateTimeEnd)
+                    csItemsRtn.Add(csItems[i]);
             }
-            body.Append("</table>");
+
+            SetChangeSetEmailContent(csItemsRtn, projectName);
+                
+        }
+
+        StringBuilder body = new StringBuilder();
+
+        StringBuilder content = new StringBuilder();
+
+        private void GetEmailContent()
+        {
+            body.AppendLine($"<HTML><BODY contentEditable='true'> {Utils.GetConfig("emailheader")}");
+
+            body.Append(content);
+
             body.Append($"{Utils.GetConfig("emailfooter").ToStringEx()}</BODY></HTML>");
 
-            return body.ToStringEx();
+            webBrowserShow.DocumentText = body.ToStringEx();
+
+        }
+        private void SetEmailContent(List<VKWorkItem> vKWorkItemsRtn, string sprintNum)
+        {
+
+            content.AppendLine(  $"<p style='margin: 0 0;color:#2F5597;'>Resolved Bugs.Please Verify!<o:p></o:p></p>");
+            content.Append("<table class='MsoNormalTable' width=1200 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
+            content.AppendLine("<tr style='height:17.15pt'>");
+            content.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
+            content.Append(string.Format("<td width=200 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
+            content.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "State"));
+            content.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
+            content.Append(string.Format("<td  style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
+
+
+            content.AppendLine("</tr>");
+            foreach (VKWorkItem wi in vKWorkItemsRtn)
+            {
+                content.Append("<tr style='height:17.15pt'>");
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.WorkItemType.Replace("Product Backlog Item", "PBI")));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.AssignedTo));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.State));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ID));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Title));
+                                
+                content.AppendLine("</tr>");
+            }
+            content.Append("</table>");
+
+            content.AppendLine("</br>");
+        }
+
+        private void SetChangeSetEmailContent(List<ChangeSetItem> vKWorkItemsRtn,string projectName)
+        {
+
+
+            content.AppendLine($"<p style='margin: 0 0;color:#2F5597;'>"+ projectName + " ChangeSets<o:p></o:p></p>");
+            content.Append("<table class='MsoNormalTable' width=1200 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
+            content.AppendLine("<tr style='height:17.15pt'>");
+            content.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ChangeSet Id"));
+            content.Append(string.Format("<td width=200 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "User"));
+            content.Append(string.Format("<td width=150 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Time"));
+            content.Append(string.Format("<td style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Comment"));
+            content.AppendLine("</tr>");
+            foreach (ChangeSetItem wi in vKWorkItemsRtn)
+            {
+                content.Append("<tr style='height:17.15pt'>");
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ChangesetId));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.OwnerDisplayName));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.CreationDate.ToStringEx()));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Comment));
+                content.AppendLine("</tr>");
+            }
+            content.Append("</table>");
+
+            content.AppendLine("</br>");
         }
 
         private List<VKWorkItem> GetSpecficDateWorkItems(List<VKWorkItem> vKWorkItems, DateTime dateTime, DateTime dateTimeEnd)
@@ -362,10 +448,11 @@ namespace TFSTool
                     if (dateTimeEnd != null && (wi.ChangedDate.DayOfYear > dateTimeEnd.DayOfYear))
                         continue;
 
-                    if (checkedListStatus.HasSelected(out string status) && !status.Contains(wi.State))
+                    string status;
+                    if (checkedListStatus.HasSelected(out status) && !status.Contains(wi.State))
                         continue;
-
-                    if (checkedListType.HasSelected(out string type) && !type.Contains(wi.WorkItemType))
+                    string type;
+                    if (checkedListType.HasSelected(out type) && !type.Contains(wi.WorkItemType))
                         continue;
 
                     if (owners.Length > 0)

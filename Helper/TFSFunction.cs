@@ -1,4 +1,5 @@
 ﻿using Microsoft.TeamFoundation.Client;
+using Microsoft.TeamFoundation.VersionControl.Client;
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Helper
 
         public bool IsConnected { get; private set; }
         private WorkItemStore _workItemStore;
+        private VersionControlServer _versionControlServer;
 
         public TFSFunction()
         {
@@ -39,7 +41,7 @@ namespace Helper
                     TfsTeamProjectCollection tpc = new TfsTeamProjectCollection(new Uri(tfsUrl), tfsCred);
                     tpc.Authenticate();
                     _workItemStore = tpc.GetService<WorkItemStore>();
-
+                    _versionControlServer = tpc.GetService<VersionControlServer>();
                     IsConnected = true;
                     return true;
                 }
@@ -88,7 +90,41 @@ namespace Helper
             }
         }
 
+        public bool GetChangesets(string serverPath , List<ChangeSetItem> csItems)
+        {
 
+            if (!IsConnected || _workItemStore == null)
+                return false;
+
+            //Get the source code control service. 
+
+            var history = _versionControlServer.QueryHistory(
+                serverPath,  //Source control path to the item. Like $/Project/Path ...
+                LatestVersionSpec.Instance, //Search latest version
+                0, //No unique deletion id. 
+                RecursionType.Full, //Full recursion on the path
+                null, //All users 
+                new DateVersionSpec(DateTime.Now - TimeSpan.FromDays(7)), //From the 7 days ago ... 
+                LatestVersionSpec.Instance, //To the current version ... 
+                Int32.MaxValue, //Include all changes. Can limit the number you get back.
+                false, //Don't include details of items, only metadata. 
+                false //Slot mode is false. 
+                );
+            //Enumerate of the changesets. 
+            foreach (Changeset changeset in history)
+            {
+                ChangeSetItem csi = new ChangeSetItem();
+                csi.ChangesetId = changeset.ChangesetId;
+                csi.Comment = changeset.Comment;
+                csi.Committer = changeset.Committer;
+                csi.CommitterDisplayName = changeset.CommitterDisplayName;
+                csi.CreationDate = changeset.CreationDate;
+                csi.Owner = changeset.Owner;
+                csi.OwnerDisplayName = changeset.OwnerDisplayName;
+                csItems.Add(csi);
+            }
+            return true;
+        }
     }
 
 }
