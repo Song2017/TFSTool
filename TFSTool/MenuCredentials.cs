@@ -7,13 +7,13 @@ using TFSUtils;
 
 namespace TFSTool
 {
-    public partial class ToolMenu : BaseForm
+    public partial class MenuCredentials : BaseForm
     {
         public List<KeyValuePair<string, string>> TFSCredentials { get; private set; }
 
         public List<KeyValuePair<string, string>> EmailParameters { get; private set; }
 
-        public ToolMenu()
+        public MenuCredentials()
         {
             this.InitializeComponent();
             this.Init();
@@ -46,7 +46,7 @@ namespace TFSTool
             if (txtQuery.Text.ToStringEx().IsNullOrEmpty())
                 txtQuery.Text = $"SELECT * FROM WorkItems WHERE  [System.TeamProject] = '{Utils.GetConfig(AppConstants.PRONAME) ?? "project name"}'";
             if (textSubject.Text.ToStringEx().IsNullOrEmpty())
-                textSubject.Text = string.Format("Subject ~@{0}", DateTime.Now.ToString("yyyy/MM/dd"));
+                textSubject.Text = string.Format("Subject");
         }
 
         private void InitMethod()

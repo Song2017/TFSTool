@@ -113,14 +113,16 @@ namespace Helper
             //Enumerate of the changesets. 
             foreach (Changeset changeset in history)
             {
-                ChangeSetItem csi = new ChangeSetItem();
-                csi.ChangesetId = changeset.ChangesetId;
-                csi.Comment = changeset.Comment;
-                csi.Committer = changeset.Committer;
-                csi.CommitterDisplayName = changeset.CommitterDisplayName;
-                csi.CreationDate = changeset.CreationDate;
-                csi.Owner = changeset.Owner;
-                csi.OwnerDisplayName = changeset.OwnerDisplayName;
+                ChangeSetItem csi = new ChangeSetItem
+                {
+                    ChangesetId = changeset.ChangesetId,
+                    Comment = changeset.Comment,
+                    Committer = changeset.Committer,
+                    CommitterDisplayName = changeset.CommitterDisplayName,
+                    CreationDate = changeset.CreationDate,
+                    Owner = changeset.Owner,
+                    OwnerDisplayName = changeset.OwnerDisplayName
+                };
                 csItems.Add(csi);
             }
             return true;

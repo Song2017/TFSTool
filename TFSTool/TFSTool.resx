@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonReceive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>785, 64</value>
+    <value>554, 72</value>
   </data>
   <data name="buttonReceive.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -141,10 +141,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonReceive.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>7</value>
   </data>
   <data name="buttonSend.Location" type="System.Drawing.Point, System.Drawing">
-    <value>785, 117</value>
+    <value>554, 125</value>
   </data>
   <data name="buttonSend.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -165,157 +165,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonSend.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="labelTo.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>41, 42</value>
-  </data>
-  <data name="labelTo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 13</value>
-  </data>
-  <data name="labelTo.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="labelTo.Text" xml:space="preserve">
-    <value>To:</value>
-  </data>
-  <data name="&gt;&gt;labelTo.Name" xml:space="preserve">
-    <value>labelTo</value>
-  </data>
-  <data name="&gt;&gt;labelTo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelTo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelTo.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="textTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 40</value>
-  </data>
-  <data name="textTo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 20</value>
-  </data>
-  <data name="textTo.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="&gt;&gt;textTo.Name" xml:space="preserve">
-    <value>textTo</value>
-  </data>
-  <data name="&gt;&gt;textTo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textTo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;textTo.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="labelCC.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelCC.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 69</value>
-  </data>
-  <data name="labelCC.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 13</value>
-  </data>
-  <data name="labelCC.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="labelCC.Text" xml:space="preserve">
-    <value>CC:</value>
-  </data>
-  <data name="&gt;&gt;labelCC.Name" xml:space="preserve">
-    <value>labelCC</value>
-  </data>
-  <data name="&gt;&gt;labelCC.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelCC.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelCC.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="textCC.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 66</value>
-  </data>
-  <data name="textCC.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 20</value>
-  </data>
-  <data name="textCC.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="&gt;&gt;textCC.Name" xml:space="preserve">
-    <value>textCC</value>
-  </data>
-  <data name="&gt;&gt;textCC.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textCC.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;textCC.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="labelSubject.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelSubject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 95</value>
-  </data>
-  <data name="labelSubject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 13</value>
-  </data>
-  <data name="labelSubject.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="labelSubject.Text" xml:space="preserve">
-    <value>Subject:</value>
-  </data>
-  <data name="&gt;&gt;labelSubject.Name" xml:space="preserve">
-    <value>labelSubject</value>
-  </data>
-  <data name="&gt;&gt;labelSubject.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelSubject.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelSubject.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="textSubject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 92</value>
-  </data>
-  <data name="textSubject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 20</value>
-  </data>
-  <data name="textSubject.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="&gt;&gt;textSubject.Name" xml:space="preserve">
-    <value>textSubject</value>
-  </data>
-  <data name="&gt;&gt;textSubject.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textSubject.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;textSubject.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>6</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 149</value>
+    <value>11, 164</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
@@ -336,7 +192,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>5</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tlpBrowser.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -350,6 +206,45 @@
   </data>
   <data name="tlpBrowser.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;webBrowserShow.Name" xml:space="preserve">
+    <value>webBrowserShow</value>
+  </data>
+  <data name="&gt;&gt;webBrowserShow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.WebBrowser, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;webBrowserShow.Parent" xml:space="preserve">
+    <value>tlpBrowser</value>
+  </data>
+  <data name="&gt;&gt;webBrowserShow.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tlpBrowser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>70, 161</value>
+  </data>
+  <data name="tlpBrowser.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tlpBrowser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>802, 360</value>
+  </data>
+  <data name="tlpBrowser.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="&gt;&gt;tlpBrowser.Name" xml:space="preserve">
+    <value>tlpBrowser</value>
+  </data>
+  <data name="&gt;&gt;tlpBrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tlpBrowser.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tlpBrowser.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tlpBrowser.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="webBrowserShow" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,51,Percent,49" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="webBrowserShow.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -378,62 +273,41 @@
   <data name="&gt;&gt;webBrowserShow.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tlpBrowser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 146</value>
-  </data>
-  <data name="tlpBrowser.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tlpBrowser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>802, 360</value>
-  </data>
-  <data name="tlpBrowser.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="&gt;&gt;tlpBrowser.Name" xml:space="preserve">
-    <value>tlpBrowser</value>
-  </data>
-  <data name="&gt;&gt;tlpBrowser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tlpBrowser.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tlpBrowser.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="tlpBrowser.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="webBrowserShow" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,51,Percent,49" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="ConfigToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="ConfigToolStripMenuItem.Text" xml:space="preserve">
-    <value>Config Credentials</value>
-  </data>
-  <data name="loadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="loadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Load Credentials</value>
-  </data>
-  <data name="editEmailToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="editEmailToolStripMenuItem.Text" xml:space="preserve">
-    <value>Edit Email</value>
-  </data>
-  <data name="configEmailToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="configEmailToolStripMenuItem.Text" xml:space="preserve">
-    <value>Config Email</value>
-  </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 20</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>Tools</value>
+  </data>
+  <data name="ConfigToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="ConfigToolStripMenuItem.Text" xml:space="preserve">
+    <value>Config Credentials</value>
+  </data>
+  <data name="configChangeSetsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="configChangeSetsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Config ChangeSets</value>
+  </data>
+  <data name="configEmailToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="configEmailToolStripMenuItem.Text" xml:space="preserve">
+    <value>Config EmailContent</value>
+  </data>
+  <data name="editEmailToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="editEmailToolStripMenuItem.Text" xml:space="preserve">
+    <value>Edit Email</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Help</value>
   </data>
   <data name="tipsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 22</value>
@@ -446,12 +320,6 @@
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>About</value>
-  </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Help</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -478,13 +346,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>3</value>
   </data>
   <data name="txtSprintNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>453, 66</value>
+    <value>90, 14</value>
   </data>
   <data name="txtSprintNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 20</value>
+    <value>150, 20</value>
   </data>
   <data name="txtSprintNum.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -496,25 +364,25 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtSprintNum.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;txtSprintNum.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>4</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>370, 70</value>
+    <value>7, 18</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 13</value>
+    <value>80, 13</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Sprint Number:</value>
+    <value>Spring Number:</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -523,19 +391,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>2</value>
   </data>
   <data name="dateTimePicker.CustomFormat" xml:space="preserve">
     <value>yyyy-MM-dd 00:00:00</value>
   </data>
   <data name="dateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 118</value>
+    <value>90, 66</value>
   </data>
   <data name="dateTimePicker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>150, 20</value>
   </data>
   <data name="dateTimePicker.TabIndex" type="System.Int32, mscorlib">
     <value>55</value>
@@ -547,7 +415,7 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dateTimePicker.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;dateTimePicker.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -556,16 +424,16 @@
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 121</value>
+    <value>21, 70</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
+    <value>63, 13</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>54</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>BeginDate:</value>
+    <value>Begin Date:</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -574,19 +442,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>8</value>
   </data>
   <data name="dateTimePickerEnd.CustomFormat" xml:space="preserve">
     <value>yyyy-MM-dd 23:59:59</value>
   </data>
   <data name="dateTimePickerEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>349, 118</value>
+    <value>90, 92</value>
   </data>
   <data name="dateTimePickerEnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>150, 20</value>
   </data>
   <data name="dateTimePickerEnd.TabIndex" type="System.Int32, mscorlib">
     <value>57</value>
@@ -598,25 +466,25 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dateTimePickerEnd.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;dateTimePickerEnd.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>0</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 122</value>
+    <value>32, 96</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 13</value>
+    <value>55, 13</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>56</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>EndDate:</value>
+    <value>End Date:</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -625,13 +493,13 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="buttonSaveLocal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>785, 90</value>
+    <value>554, 98</value>
   </data>
   <data name="buttonSaveLocal.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -652,7 +520,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonSaveLocal.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="tlpText.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -697,7 +565,7 @@
     <value>0</value>
   </data>
   <data name="tlpText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>63, 165</value>
+    <value>63, 180</value>
   </data>
   <data name="tlpText.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
@@ -718,7 +586,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tlpText.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>1</value>
   </data>
   <data name="tlpText.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="richTextBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,51,Percent,49" /&gt;&lt;/TableLayoutSettings&gt;</value>
@@ -772,7 +640,7 @@
     <value>Closed</value>
   </data>
   <data name="checkedListStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>664, 46</value>
+    <value>402, 27</value>
   </data>
   <data name="checkedListStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 94</value>
@@ -787,10 +655,10 @@
     <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkedListStatus.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;checkedListStatus.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="checkedListType.Items" xml:space="preserve">
     <value>Bug</value>
@@ -811,7 +679,7 @@
     <value>Test Case</value>
   </data>
   <data name="checkedListType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>555, 46</value>
+    <value>293, 27</value>
   </data>
   <data name="checkedListType.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 94</value>
@@ -826,16 +694,16 @@
     <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkedListType.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;checkedListType.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="txtOwners.Location" type="System.Drawing.Point, System.Drawing">
-    <value>364, 92</value>
+    <value>90, 40</value>
   </data>
   <data name="txtOwners.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 20</value>
+    <value>150, 20</value>
   </data>
   <data name="txtOwners.TabIndex" type="System.Int32, mscorlib">
     <value>63</value>
@@ -847,10 +715,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtOwners.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;txtOwners.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -859,7 +727,7 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>286, 95</value>
+    <value>12, 44</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 13</value>
@@ -877,16 +745,16 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>9</value>
   </data>
   <data name="chkStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="chkStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>664, 27</value>
+    <value>402, 8</value>
   </data>
   <data name="chkStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 17</value>
@@ -904,10 +772,10 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkStatus.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;chkStatus.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="chkType.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -916,7 +784,7 @@
     <value>NoControl</value>
   </data>
   <data name="chkType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>555, 27</value>
+    <value>293, 8</value>
   </data>
   <data name="chkType.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 17</value>
@@ -934,9 +802,33 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkType.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;chkType.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 27</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>534, 121</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>TFS Condition</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1039,22 +931,22 @@
   <data name="&gt;&gt;ConfigToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;loadToolStripMenuItem.Name" xml:space="preserve">
-    <value>loadToolStripMenuItem</value>
+  <data name="&gt;&gt;configChangeSetsToolStripMenuItem.Name" xml:space="preserve">
+    <value>configChangeSetsToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;loadToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;editEmailToolStripMenuItem.Name" xml:space="preserve">
-    <value>editEmailToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;editEmailToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;configChangeSetsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;configEmailToolStripMenuItem.Name" xml:space="preserve">
     <value>configEmailToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;configEmailToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;editEmailToolStripMenuItem.Name" xml:space="preserve">
+    <value>editEmailToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;editEmailToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">

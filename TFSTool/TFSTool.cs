@@ -11,6 +11,9 @@ namespace TFSTool
     public partial class TFSTool : BaseForm
     {
         private List<VKWorkItem> _vKWorkItemsCache = new List<VKWorkItem>();
+        StringBuilder body = new StringBuilder();
+        StringBuilder content = new StringBuilder();
+
 
         public TFSTool()
         {
@@ -22,52 +25,47 @@ namespace TFSTool
         {
             InitUI();
             InitMethod();
-
         }
 
         private void InitUI()
         {
-            SetUICredentials();
-
-            //if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
-            //dateTimePicker.Value = DateTime.Now.AddDays(-3);
-            //else
-
-            dateTimePicker.Value = DateTime.Now;
-
+            //monday shoud get history from last friday
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+                dateTimePicker.Value = DateTime.Now.AddDays(-3);
+            else
+                dateTimePicker.Value = DateTime.Now;
             dateTimePickerEnd.Value = DateTime.Now;
-
-            DateTime dStart = new DateTime(this.dateTimePickerEnd.Value.Year, this.dateTimePickerEnd.Value.Month, this.dateTimePickerEnd.Value.Day, 0, 0, 0);
-
-            DateTime dEnd = new DateTime(this.dateTimePickerEnd.Value.Year, this.dateTimePickerEnd.Value.Month, this.dateTimePickerEnd.Value.Day, 23, 59, 59);
-
-            dateTimePicker.Value = dStart;
-
+            DateTime dEnd = new DateTime(this.dateTimePickerEnd.Value.Year, 
+                this.dateTimePickerEnd.Value.Month, this.dateTimePickerEnd.Value.Day, 23, 59, 59);
             dateTimePickerEnd.Value = dEnd;
 
             txtSprintNum.Text = Utils.GetConfig(AppConstants.SPRINTNUM);
-            textSubject.Text = $"{Utils.GetConfig(AppConstants.PRONAME)} released @ ~{DateTime.Now.ToString("yyyy/MM/dd")}";
             tlpText.Visible = false;
             txtOwners.Text = Utils.GetConfig(AppConstants.OWNERS);
 
-            //checkedListStatus.SetItemChecked(10, true);
+            checkedListStatus.SetItemChecked(10, true);
             checkedListStatus.SetItemChecked(3, true);
             checkedListType.SetItemChecked(0, true);
             checkedListType.SetItemChecked(2, true);
         }
-
 
         private void InitMethod()
         {
             //menu
             this.ConfigToolStripMenuItem.Click += delegate (object sender, EventArgs e)
             {
-                if (this.SetCredentials())
-                {
-                    this.SetUICredentials();
-                }
+                this.SetCredentials();
             };
-            this.loadToolStripMenuItem.Click += delegate { this.SetUICredentials(); };
+            this.configChangeSetsToolStripMenuItem.Click += delegate {
+                using (MenuChangeSets dialog = new MenuChangeSets())
+                {
+                    if (dialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show(this, "Change Sets content configure does not saved.", "Tip", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
+                }
+
+            };
             this.editEmailToolStripMenuItem.Click += delegate
             {
                 tlpText.Visible = !tlpText.Visible;
@@ -84,7 +82,7 @@ namespace TFSTool
                 }
             };
             this.configEmailToolStripMenuItem.Click += delegate {
-                using (EmailContent dialog = new EmailContent())
+                using (MenuEmailContent dialog = new MenuEmailContent())
                 {
                     if (dialog.ShowDialog() != DialogResult.OK)
                     {
@@ -97,7 +95,7 @@ namespace TFSTool
             {
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("1. Install Outlook to local machine: avoid local email server prohibit ");
-                sb.AppendLine("2. Set Credentials/Email Content in Menu ");
+                sb.AppendLine("2. Set Credentials/Email Content/Changesets Path in Menu ");
                 sb.AppendLine("3. Config filter condition: Date, Type, Status...");
                 sb.AppendLine("4. Retrive TFS data via button ");
                 sb.AppendLine("5. Edit Email content and Reload via Menu ");
@@ -107,15 +105,16 @@ namespace TFSTool
             };
             this.aboutToolStripMenuItem.Click += delegate
             {
-                MessageBox.Show(this, "More details please find in ...", "About", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show(this, "More details please find in \r\n  https://github.com/Song2017/TFSTool/blob/master/README.md", 
+                    "About", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             };
 
             //Button
             buttonSend.Click += delegate (object sender, EventArgs e)
             {
-                if (textTo.Text.IsNullOrEmpty())
+                if (Utils.GetConfig(AppConstants.EMAIL_TO, "").IsNullOrEmpty())
                 {
-                    MessageBox.Show(this, "Please input To.", "SendEmail", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(this, "Please set Email To.", "SendEmail", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 if (webBrowserShow.DocumentText.IsNullOrEmpty())
                 {
@@ -130,7 +129,6 @@ namespace TFSTool
             };
             buttonReceive.Click += delegate
             {
-                SetUICredentials();
                 PrepareVKWorkItems();
             };
             buttonSaveLocal.Click += delegate
@@ -181,44 +179,13 @@ namespace TFSTool
             };
 
         }
-         
 
-        private bool SendEmail()
-        {
-            OutlookApplication outlookApplication = new OutlookApplication();
-            try
-            {
-                outlookApplication.SendEmail(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem, textTo.Text, textCC.Text, textSubject.Text,
-                    webBrowserShow.DocumentText, Microsoft.Office.Interop.Outlook.OlImportance.olImportanceNormal);
-            }
-            catch (Exception e)
-            {
-                _Log.Error("Send email error:" + e.Message);
-                return false;
-            }
-            finally
-            {
-                if (outlookApplication.IsNew)
-                {
-                    outlookApplication.Dispose();
-                }
-            }
-
-            return true;
-        }
-
-        private void SetUICredentials()
-        {
-            textTo.Text = Utils.GetConfig(AppConstants.EMAIL_TO, "");
-            textCC.Text = Utils.GetConfig(AppConstants.EMAIL_CC, "");
-            textSubject.Text = Utils.GetConfig(AppConstants.EMAIL_SUBJECT, "");
-        }
 
         private bool SetCredentials()
         {
             try
             {
-                using (ToolMenu dialog = new ToolMenu())
+                using (MenuCredentials dialog = new MenuCredentials())
                 {
                     if (dialog.ShowDialog() != DialogResult.OK)
                     {
@@ -244,6 +211,34 @@ namespace TFSTool
             {
                 return false;
             }
+            return true;
+        }
+
+        private bool SendEmail()
+        {
+            OutlookApplication outlookApplication = new OutlookApplication();
+            try
+            {
+                outlookApplication.SendEmail(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem,
+                    Utils.GetConfig(AppConstants.EMAIL_TO, ""),
+                    Utils.GetConfig(AppConstants.EMAIL_CC, ""),
+                    Utils.GetConfig(AppConstants.EMAIL_SUBJECT, "") + $" @ ~{DateTime.Now.ToString("yyyy / MM / dd")}",
+                    webBrowserShow.DocumentText,
+                    Microsoft.Office.Interop.Outlook.OlImportance.olImportanceNormal);
+            }
+            catch (Exception e)
+            {
+                _Log.Error("Send email error:" + e.Message);
+                return false;
+            }
+            finally
+            {
+                if (outlookApplication.IsNew)
+                {
+                    outlookApplication.Dispose();
+                }
+            }
+
             return true;
         }
 
@@ -273,21 +268,26 @@ namespace TFSTool
                     try
                     {
                         body = new StringBuilder();
-
                         content = new StringBuilder();
 
-                        List<ChangeSetItem> svi3CSI = tFSOperation.GetSVI3ChangeItems();
-                        HandleCSItems(svi3CSI, "SVI II AP/SVI3 DTM");
+                        if (Utils.GetConfig(AppConstants.CHANGESETS_ENABLE, "F") == "T")
+                        {
+                            List<ChangeSetItem> changeSets = new List<ChangeSetItem>();
+                            string[] strChangeSets = Utils.GetConfig(AppConstants.CHANGESETS_PROS).Split(',');
+                            foreach (string pro in strChangeSets)
+                            {
+                                //$/SVI III / DTM / Next Gen - VS2015
+                                //$/ValVue3/Trunk/Source/ValVue3/Dev-VS2015
+                                changeSets = tFSOperation.GetChangeItems(pro);
+                                HandleCSItems(changeSets, pro.Replace("$/", string.Empty));
 
-                        List<ChangeSetItem> vv3CSI = tFSOperation.GetVV3ChangeItems();
-                        HandleCSItems(vv3CSI,"ValVue 3.5");
-
+                            }
+                        }
                         List<VKWorkItem> vKWorkItems = tFSOperation.GetVKWorkItems();
                         if (vKWorkItems == null || vKWorkItems.Count <= 0)
                             return;
 
                         HandleWorkItems(vKWorkItems);
-
                         GetEmailContent();
                     }
                     catch (Exception e)
@@ -328,7 +328,7 @@ namespace TFSTool
 
             for (int i = 0; i < vKWorkItems.Count; i++)
             {
-                if (sprintNum.IsNullOrEmpty() || vKWorkItems[i].IterationPath.Contains(sprintNum))
+                if (sprintNum.IsNullOrEmpty() || vKWorkItems[i].IterationPath.ToLower().Contains(sprintNum.ToLower()))
                     vKWorkItemsRtn.Add(vKWorkItems[i]);
             }
 
@@ -338,9 +338,35 @@ namespace TFSTool
             //set email content
             vKWorkItemsRtn = GetSpecficDateWorkItems(_vKWorkItemsCache, dateTime, dateTimeEnd);
 
-
             SetEmailContent(vKWorkItemsRtn, sprintNum);
+        }
 
+        private void SetEmailContent(List<VKWorkItem> vKWorkItemsRtn, string sprintNum)
+        {
+            content.AppendLine($"<p style='margin: 0 0;color:#2F5597;'>Following Items are finished. Please Verify!<o:p></o:p></p>");
+            content.Append("<table class='MsoNormalTable' width=1100 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
+            content.AppendLine("<tr style='height:17.15pt'>");
+            content.Append(string.Format("<td width=110 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
+            content.Append(string.Format("<td width=150 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
+            content.Append(string.Format("<td width=80 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
+            content.Append(string.Format("<td width=80 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "State"));
+            content.Append(string.Format("<td style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
+
+            content.AppendLine("</tr>");
+            foreach (VKWorkItem wi in vKWorkItemsRtn)
+            {
+                content.Append("<tr style='height:17.15pt'>");
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.WorkItemType.Replace("Product Backlog Item", "PBI")));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.AssignedTo));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ID));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.State));
+                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Title));
+
+                content.AppendLine("</tr>");
+            }
+            content.Append("</table>");
+
+            content.AppendLine("</br>");
         }
 
         private void HandleCSItems(List<ChangeSetItem> csItems, string projectName)
@@ -358,58 +384,29 @@ namespace TFSTool
             }
 
             SetChangeSetEmailContent(csItemsRtn, projectName);
-                
         }
 
-        StringBuilder body = new StringBuilder();
-
-        StringBuilder content = new StringBuilder();
 
         private void GetEmailContent()
         {
-            body.AppendLine($"<HTML><BODY contentEditable='true'> {Utils.GetConfig("emailheader")}");
+            if (Utils.GetConfig(AppConstants.EMAIL_HEADER).IsNullOrEmpty()
+                || Utils.GetConfig(AppConstants.EMAIL_FOOTER).IsNullOrEmpty())
+            {
+                MessageBox.Show(this, "Please set Email Header&Footer.", "SendEmail", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            body.AppendLine($"<HTML><BODY contentEditable='true'> " +
+                $"{ Utils.GetConfig(AppConstants.EMAIL_HEADER).Replace("$$spring_number$$", Utils.GetConfig(AppConstants.SPRINTNUM)).Replace("$$pro_name$$", Utils.GetConfig(AppConstants.PRONAME, "Pro Name")).Replace("$$date$$", DateTime.Now.ToString("HH:mm MMMM dd"))}");
 
             body.Append(content);
 
-            body.Append($"{Utils.GetConfig("emailfooter").ToStringEx()}</BODY></HTML>");
+            body.Append($"{Utils.GetConfig(AppConstants.EMAIL_FOOTER).Replace("$$from_name$$", Utils.GetConfig(AppConstants.EMAIL_SENDER, "Sender Name"))}</BODY></HTML>");
 
             webBrowserShow.DocumentText = body.ToStringEx();
-
-        }
-        private void SetEmailContent(List<VKWorkItem> vKWorkItemsRtn, string sprintNum)
-        {
-
-            content.AppendLine(  $"<p style='margin: 0 0;color:#2F5597;'>Resolved Bugs.Please Verify!<o:p></o:p></p>");
-            content.Append("<table class='MsoNormalTable' width=1200 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
-            content.AppendLine("<tr style='height:17.15pt'>");
-            content.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "Work Item Type"));
-            content.Append(string.Format("<td width=200 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "AssignedTo"));
-            content.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "State"));
-            content.Append(string.Format("<td width=100 style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", "ID"));
-            content.Append(string.Format("<td  style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", "Title"));
-
-
-            content.AppendLine("</tr>");
-            foreach (VKWorkItem wi in vKWorkItemsRtn)
-            {
-                content.Append("<tr style='height:17.15pt'>");
-                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.WorkItemType.Replace("Product Backlog Item", "PBI")));
-                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.AssignedTo));
-                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.State));
-                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0} </span></td>", wi.ID));
-                content.Append(string.Format("<td   style='padding:0in 0in 0in 0in;height:17.15pt'><span style='font-size:12.0pt'>{0}</span></td>", wi.Title));
-                                
-                content.AppendLine("</tr>");
-            }
-            content.Append("</table>");
-
-            content.AppendLine("</br>");
         }
 
         private void SetChangeSetEmailContent(List<ChangeSetItem> vKWorkItemsRtn,string projectName)
         {
-
-
             content.AppendLine($"<p style='margin: 0 0;color:#2F5597;'>"+ projectName + " ChangeSets<o:p></o:p></p>");
             content.Append("<table class='MsoNormalTable' width=1200 border = 1 cellspacing=0 cellpadding=0 style='color:#2F5597;'>");
             content.AppendLine("<tr style='height:17.15pt'>");
@@ -428,7 +425,6 @@ namespace TFSTool
                 content.AppendLine("</tr>");
             }
             content.Append("</table>");
-
             content.AppendLine("</br>");
         }
 
@@ -448,17 +444,15 @@ namespace TFSTool
                     if (dateTimeEnd != null && (wi.ChangedDate.DayOfYear > dateTimeEnd.DayOfYear))
                         continue;
 
-                    string status;
-                    if (checkedListStatus.HasSelected(out status) && !status.Contains(wi.State))
+                    if (checkedListStatus.HasSelected(out string status) && !status.Contains(wi.State))
                         continue;
-                    string type;
-                    if (checkedListType.HasSelected(out type) && !type.Contains(wi.WorkItemType))
+                    if (checkedListType.HasSelected(out string type) && !type.Contains(wi.WorkItemType))
                         continue;
 
                     if (owners.Length > 0)
                     {
                         foreach (var owner in owners)
-                            if (wi.AssignedTo.ToStringEx().Contains(owner))
+                            if (wi.AssignedTo.ToStringEx().ToLower().Contains(owner.ToLower()))
                                 vKWorkItemsRtn.Add(wi);
                     }
                     else

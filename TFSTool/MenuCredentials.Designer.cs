@@ -1,6 +1,6 @@
 ﻿namespace TFSTool
 {
-    partial class ToolMenu
+    partial class MenuCredentials
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,10 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtQuery = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtUrl = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.linkLabelCredentials = new System.Windows.Forms.LinkLabel();
             this.textPassWord = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,10 +47,6 @@
             this.labelCC = new System.Windows.Forms.Label();
             this.textTo = new System.Windows.Forms.TextBox();
             this.labelTo = new System.Windows.Forms.Label();
-            this.txtQuery = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtUrl = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +86,38 @@
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "TFS Authentication Credentials";
+            // 
+            // txtQuery
+            // 
+            this.txtQuery.Location = new System.Drawing.Point(59, 121);
+            this.txtQuery.Name = "txtQuery";
+            this.txtQuery.Size = new System.Drawing.Size(350, 20);
+            this.txtQuery.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(-2, 124);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "TFSQuery:";
+            // 
+            // txtUrl
+            // 
+            this.txtUrl.Location = new System.Drawing.Point(59, 95);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(350, 20);
+            this.txtUrl.TabIndex = 23;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(-3, 98);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "TFSURL:";
             // 
             // linkLabelCredentials
             // 
@@ -139,14 +171,14 @@
             this.groupBox1.Controls.Add(this.labelTo);
             this.groupBox1.Location = new System.Drawing.Point(12, 179);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(419, 103);
+            this.groupBox1.Size = new System.Drawing.Size(419, 130);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Email";
             // 
             // textSubject
             // 
-            this.textSubject.Location = new System.Drawing.Point(59, 71);
+            this.textSubject.Location = new System.Drawing.Point(59, 91);
             this.textSubject.Name = "textSubject";
             this.textSubject.Size = new System.Drawing.Size(350, 20);
             this.textSubject.TabIndex = 22;
@@ -154,7 +186,7 @@
             // labelSubject
             // 
             this.labelSubject.AutoSize = true;
-            this.labelSubject.Location = new System.Drawing.Point(7, 74);
+            this.labelSubject.Location = new System.Drawing.Point(7, 94);
             this.labelSubject.Name = "labelSubject";
             this.labelSubject.Size = new System.Drawing.Size(46, 13);
             this.labelSubject.TabIndex = 21;
@@ -162,7 +194,7 @@
             // 
             // textCC
             // 
-            this.textCC.Location = new System.Drawing.Point(59, 45);
+            this.textCC.Location = new System.Drawing.Point(59, 65);
             this.textCC.Name = "textCC";
             this.textCC.Size = new System.Drawing.Size(350, 20);
             this.textCC.TabIndex = 20;
@@ -170,7 +202,7 @@
             // labelCC
             // 
             this.labelCC.AutoSize = true;
-            this.labelCC.Location = new System.Drawing.Point(28, 48);
+            this.labelCC.Location = new System.Drawing.Point(28, 68);
             this.labelCC.Name = "labelCC";
             this.labelCC.Size = new System.Drawing.Size(24, 13);
             this.labelCC.TabIndex = 19;
@@ -179,8 +211,9 @@
             // textTo
             // 
             this.textTo.Location = new System.Drawing.Point(59, 19);
+            this.textTo.Multiline = true;
             this.textTo.Name = "textTo";
-            this.textTo.Size = new System.Drawing.Size(350, 20);
+            this.textTo.Size = new System.Drawing.Size(350, 40);
             this.textTo.TabIndex = 18;
             // 
             // labelTo
@@ -192,39 +225,7 @@
             this.labelTo.TabIndex = 17;
             this.labelTo.Text = "To:";
             // 
-            // txtQuery
-            // 
-            this.txtQuery.Location = new System.Drawing.Point(59, 121);
-            this.txtQuery.Name = "txtQuery";
-            this.txtQuery.Size = new System.Drawing.Size(350, 20);
-            this.txtQuery.TabIndex = 25;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(-2, 124);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "TFSQuery:";
-            // 
-            // txtUrl
-            // 
-            this.txtUrl.Location = new System.Drawing.Point(59, 95);
-            this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(350, 20);
-            this.txtUrl.TabIndex = 23;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(-3, 98);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "TFSURL:";
-            // 
-            // ToolMenu
+            // MenuCredentials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -233,7 +234,7 @@
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "ToolMenu";
+            this.Name = "MenuCredentials";
             this.Text = "Credentials";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

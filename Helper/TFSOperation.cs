@@ -51,32 +51,14 @@ namespace Helper
             return vkWorkItems;
         }
 
-        public List<ChangeSetItem> GetSVI3ChangeItems()
-        {
-            List<ChangeSetItem> csSVI3 = new List<ChangeSetItem>();
+        public List<ChangeSetItem> GetChangeItems(string serverPath) {
 
-
+            List<ChangeSetItem> changeSetItems = new List<ChangeSetItem>();
 
             if (_tfs.ConnectToTFS(URL))
-            {
-                _tfs.GetChangesets("$/SVI III/DTM/Next Gen-VS2015", csSVI3);
-            }
+                _tfs.GetChangesets(serverPath, changeSetItems);
 
-
-            return csSVI3;
-        }
-
-        public List<ChangeSetItem> GetVV3ChangeItems()
-        {
-            List<ChangeSetItem> csVV3 = new List<ChangeSetItem>();
-
-            if (_tfs.ConnectToTFS(URL))
-            {
-                _tfs.GetChangesets("$/ValVue3/Trunk/Source/ValVue3/Dev-VS2015", csVV3);
-            }
-
-
-            return csVV3;
+            return changeSetItems;
         }
     }
 }
