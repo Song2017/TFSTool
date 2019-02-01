@@ -29,7 +29,7 @@ namespace TFSTool
             txtFromName.Text = Utils.GetConfig(AppConstants.EMAIL_SENDER,"Sender Name");
             txtPro.Text = Utils.GetConfig(AppConstants.PRONAME, "Pro Name");
 
-            string emailHeader = $"<P style='COLOR: #2f5597; MARGIN: 0px'>Hi All,<O:P></O:P></P>" +
+            string emailHeader = $"<P style='COLOR: #2f5597; MARGIN: 0px'>Hi All,<O:P></O:P></P><BR>" +
                 $"<P style='COLOR: #2f5597; MARGIN: 0px'><B><SPAN style='BACKGROUND: yellow; mso-highlight: yellow'>$$spring_number$$</SPAN></B></P><BR>" +
                 $"<P style='COLOR: #2f5597; MARGIN: 0px'>$$pro_name$$ released @ ~$$date$$ with sql script run. &nbsp; &nbsp;<O:P></O:P></P><BR>";
             string emailFooter = $"<p style='margin: 0 0;color:#2F5597;'>&nbsp;<o:p></o:p></p> <p style='margin: 0 0;color:#2F5597;'>Thanks.<o:p></o:p></p><p style='margin: 0 0;color:#2F5597;'><br>Regards,<o:p></o:p></p>" +

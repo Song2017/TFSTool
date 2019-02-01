@@ -276,8 +276,7 @@ namespace TFSTool
                             string[] strChangeSets = Utils.GetConfig(AppConstants.CHANGESETS_PROS).Split(',');
                             foreach (string pro in strChangeSets)
                             {
-                                //$/SVI III / DTM / Next Gen - VS2015
-                                //$/ValVue3/Trunk/Source/ValVue3/Dev-VS2015
+
                                 changeSets = tFSOperation.GetChangeItems(pro);
                                 HandleCSItems(changeSets, pro.Replace("$/", string.Empty));
 
