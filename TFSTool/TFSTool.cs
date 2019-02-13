@@ -42,11 +42,8 @@ namespace TFSTool
             txtSprintNum.Text = Utils.GetConfig(AppConstants.SPRINTNUM);
             tlpText.Visible = false;
             txtOwners.Text = Utils.GetConfig(AppConstants.OWNERS);
-
-            checkedListStatus.SetItemChecked(10, true);
-            checkedListStatus.SetItemChecked(3, true);
-            checkedListType.SetItemChecked(0, true);
-            checkedListType.SetItemChecked(2, true);
+            checkedListStatus.SetIndexsSelected(Utils.GetConfig(AppConstants.TFSITEMSTATUS,"0,2,3"));
+            checkedListType.SetIndexsSelected(Utils.GetConfig(AppConstants.TFSITEMTYPE, "0,2")); 
         }
 
         private void InitMethod()
@@ -129,6 +126,9 @@ namespace TFSTool
             };
             buttonReceive.Click += delegate
             {
+                Utils.SaveConfig(AppConstants.TFSITEMSTATUS, checkedListStatus.GetIndexsSelected());
+                Utils.SaveConfig(AppConstants.TFSITEMTYPE, checkedListType.GetIndexsSelected());
+
                 PrepareVKWorkItems();
             };
             buttonSaveLocal.Click += delegate
@@ -270,6 +270,7 @@ namespace TFSTool
                         body = new StringBuilder();
                         content = new StringBuilder();
 
+                        //handle changesets
                         if (Utils.GetConfig(AppConstants.CHANGESETS_ENABLE, "F") == "T")
                         {
                             List<ChangeSetItem> changeSets = new List<ChangeSetItem>();
@@ -282,6 +283,7 @@ namespace TFSTool
 
                             }
                         }
+
                         List<VKWorkItem> vKWorkItems = tFSOperation.GetVKWorkItems();
                         if (vKWorkItems == null || vKWorkItems.Count <= 0)
                             return;

@@ -13,6 +13,8 @@ namespace TFSUtils
         public const string TFS_PASSWORD = "password";
         public const string TFSURL = "tfsurl";
         public const string TFSQUERY = "tfsquery";
+        public const string TFSITEMSTATUS = "tfsitemstatus";
+        public const string TFSITEMTYPE = "tfsquitemtype";
 
         public const string EMAIL_TO = "to";
         public const string EMAIL_CC = "cc";

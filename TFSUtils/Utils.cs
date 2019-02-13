@@ -52,6 +52,23 @@ namespace TFSUtils
 
             return hasSelected;
         }
+        public static string GetIndexsSelected(this CheckedListBox checkedListBox)
+        {
+            string indexsSelected = string.Empty;
+            for (int i = 0; i < checkedListBox.Items.Count; i++) {
+                if (checkedListBox.GetItemChecked(i))
+                    indexsSelected += i.ToStringEx() + ",";
+            }
+             
+            return indexsSelected.TrimEnd(',');
+        }
+        public static void SetIndexsSelected(this CheckedListBox checkedListBox, string indexsSelected, bool isSelected = true)
+        {
+            foreach (var index in indexsSelected.Split(','))
+            {
+                checkedListBox.SetItemChecked(Int32.Parse(index), isSelected);
+            }
+        }
 
 
         //app.config
