@@ -33,7 +33,7 @@ namespace TFSTool
             if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
                 dateTimePicker.Value = DateTime.Now.AddDays(-3);
             else
-                dateTimePicker.Value = DateTime.Now;
+                dateTimePicker.Value = DateTime.Now.AddDays(-1);
             dateTimePickerEnd.Value = DateTime.Now;
             DateTime dEnd = new DateTime(this.dateTimePickerEnd.Value.Year, 
                 this.dateTimePickerEnd.Value.Month, this.dateTimePickerEnd.Value.Day, 23, 59, 59);
